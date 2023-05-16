@@ -1,0 +1,163 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.ViewModels.VmAdminPanelUsers
+@{
+    ViewData["Title"] = "EditUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    radFB.Repository.RepUsers rep1 = new radFB.Repository.RepUsers();
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">کاربران پنل ادمین</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="UserList" asp-controller="Account">کاربران پنل ادمین</a></li>
+                        <li class="breadcrumb-item active">ویرایش کاربر</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                کاربران پنل ادمین
+                            </h3>
+
+                            @if (TempData["editFailed"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["editFailed"]
+                        </div>
+                    }
+
+                        </div><!-- /.card-header -->
+                        <form role="form" method="post" enctype="multipart/form-data" asp-action="EditUser" asp-controller="Account">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="name">ایمیل</label>
+                                            <input type="email" class="form-control" id="email" 
+                                                   asp-for="email" placeholder="ایمیل" disabled >
+                                            <div id="lblStatus"></div>
+                                        </div>
+
+                                    </div>
+
+                                 
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="name">نام و نام خانوادگی</label>
+                                            <input type="text" class="form-control" id="name"
+                                                   asp-for="FullName" placeholder="نام و نام خانوادگی" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">شماره موبایل</label>
+                                            <input type="tel" class="form-control" id="mobile"
+                                                   asp-for="PhoneNumber" placeholder="شماره موبایل" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input asp-for="UserPic" id="InputFile" type="file"
+                                               accept="image/x-png,image/jpeg,image/jpg" hidden>
+                                        <label for="InputFile" class="btn btn-info white-text btn-upload">
+                                            <i class="fa fa-image right"></i>انتخاب عکس
+                                        </label>
+                                        <section>
+                                            <div class="md-form">
+                                                <input type="text" value="@ViewBag.userPic" id="ImageName" class="form-control" disabled>
+                                                <label for="Image" id="lbl_image"> تصویر </label>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <img id="image" class=" upload-image img-rounded"
+                                                 src="~/uploads/img/@ViewBag.userPic" alt="">
+                                        </section>
+                                    </div>
+
+
+                                </div>
+                                <!-- ./row -->
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>سطح دسترسی</label>
+                                            <select asp-for="Fk_userAccessID" id="userAccess" class="form-control" asp-items="ViewBag.AccessNames" required>
+                                                <option>انتخاب کنید</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="UserList" asp-controller="Account" class="btn btn-primary">بازگشت به لیست</a>
+                                <button id="AddButton" type="submit" class="btn btn-success">ثبت</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+
+    <script>
+        $('document').ready(function () {
+
+            InputFile.onchange = evt => {
+                const [file] = InputFile.files
+                if (file) {
+                    image.src = URL.createObjectURL(file)
+                    var filename = $('#InputFile').val();
+                    $('#ImageName').val(filename);
+                }
+            }
+
+
+            $('#AddButton').click(function (e) {
+
+                var conceptName = $('#userAccess').find(":selected").text();
+                if (conceptName == "انتخاب کنید") {
+                    e.stopPropagation();
+                }
+              
+            });
+
+        });
+
+    </script>
+}
+

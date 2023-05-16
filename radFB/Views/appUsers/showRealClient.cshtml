@@ -1,0 +1,812 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.ViewModels.VmRealClient
+@{
+    ViewData["Title"] = "showRealClient";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    radFB.Repository.repRadfbUsers rep = new radFB.Repository.repRadfbUsers();
+    radFB.Classes.publicFunctions func = new radFB.Classes.publicFunctions();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>مشاهده یک کاربر</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="appUsers">اطلاعات کاربران</a></li>
+                        <li class="breadcrumb-item active">مشاهده یک کاربر</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <a asp-action="Index" asp-controller="appUsers" class="btn btn-lg btn-primary col-lg-3 offset-2">
+                                <i class="fa fa-search" aria-hidden="true"></i>بازگشت به لیست
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">اطلاعات</h3>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="image-user-box">
+                            <img src="~/uploads/@Model.UserPic" alt="عکس کاربر" class="image-user">
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="type" class="user-label">نوع حساب: </label>
+                                <label class="user-info">حقیقی</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">نام و نام خانوادگی: </label>
+                                <label class="user-info">@Model.FullName</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">شماره موبایل: </label>
+                                <label class="user-info">@Model.phoneNumber</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">ایمیل: </label>
+                                <label class="user-info">@Model.email</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">میزان تحصیلات: </label>
+                                <label class="user-info">@Model.EducationLevel</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">استان: </label>
+                                <label class="user-info">@Model.province</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">شهر: </label>
+                                <label class="user-info">@Model.city</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">جنسیت: </label>
+                                <label class="user-info">@Model.Gender</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">تاهل: </label>
+                                <label class="user-info">@Model.maritalstatusTitle</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">تمایل به شرکت در پروژه ها: </label>
+                                <label class="user-info">@Model.companyDesire</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">تاریخ تولد: </label>
+                                <label class="user-info">@Model.birthday</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">کد معرف: </label>
+                                <label class="user-info">@Model.interdusedEmail</label>
+                            </div>
+
+
+
+
+
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="fa fa-paperclip"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">مقالات</span>
+                        <span class="info-box-number">@ViewBag.articles</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success"><i class="fa fa-book"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">کتاب ها</span>
+                        <span class="info-box-number">@ViewBag.books</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning"><i class="fa fa-file-text"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">پوسترها</span>
+                        <span class="info-box-number">@ViewBag.posters</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <!-- /.col -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">سوابق تحصیلی</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                تعداد :
+                                @rep.eduExprienses(Model.RealClientID).Count()
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+
+                                <tr>
+
+                                    <th class="table-row">ردیف</th>
+                                    <th>مقطع</th>
+                                    <th>نام رشته</th>
+                                    <th>محل اخذ</th>
+                                    <th>از تاریخ</th>
+                                    <th>تا تاریخ</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 0;
+                                    @foreach (var item in rep.eduExprienses(Model.RealClientID))
+                                    {
+                                        i++;
+                                        <tr>
+
+                                            <td>@i</td>
+                                            <td>@func.gradeName(item.fk_gradeID)</td>
+                                            <td>@func.majorName(item.fk_majorID)</td>
+                                            <td>@item.InstituteName</td>
+                                            <td>@item.FromDate</td>
+                                            <td>@item.UpToDate</td>
+                                        </tr>
+
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">سوابق شغلی</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+
+                                تعداد :
+                                @rep.exprienses(Model.RealClientID).Count()
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+
+                                    <th class="table-row">ردیف</th>
+                                    <th>نام شرکت</th>
+                                    <th>سمت</th>
+                                    <th class="status">وضعیت</th>
+                                    <th>از تاریخ</th>
+                                    <th>تا تاریخ</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int ii = 0;
+                                    @foreach (var item in ViewBag.exprienses)
+                                    {
+                                        ii++;
+                                        <tr>
+
+                                            <td>@ii</td>
+                                            <td>@item.InstituteName</td>
+                                            <td>@item.post</td>
+                                            <td>@item.description</td>
+                                            <td>@item.FromDate</td>
+                                            <td>@item.UpToDate</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            @*@if (TempData["seccessDelete"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-check"></i> توجه!</h6>
+                            @TempData["seccessDelete"]
+                        </div>
+                    }
+        @if (TempData["FailedDelete"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["FailedDelete"]
+                        </div>
+                    }*@
+            <div class="col-8">
+                <div class="row">
+
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">علاقه مندی ها </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.favorites(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>عنوان</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.favorites(Model.RealClientID))
+                                        {
+                                            <tr>
+                                                <td class="message-text">@item.title</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col favorite-->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    مهارت ها
+                                </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.skills(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>عنوان</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.skills(Model.RealClientID))
+                                        {
+                                            <tr>
+                                                <td class="message-text">@item</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.col skill-->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">جوایز </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.awards(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>عنوان</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.awards(Model.RealClientID))
+                                        {
+                                            <tr>
+                                                <td class="message-text">@item.awardsTitle</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col reward-->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">فعایت ها </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.activities(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="description">عنوان</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.activities(Model.RealClientID))
+                                        {
+                                            <tr>
+                                                <td class="message-text">@item.avtivityTitle</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col activity -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">کارهای داوطلبانه</h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.voluntary(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+
+                                            <th>عنوان</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.voluntary(Model.RealClientID))
+                                        {
+                                            <tr>
+                                                <td class="message-text">@item.VoluntaryworkTitle</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.col vol-->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">سوال ها </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.question(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="description">سوال</th>
+                                            <th>تعداد پاسخ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.question(Model.RealClientID))
+                                        {
+                                        <tr>
+                                            <td class="message-text">@item.title</td>
+                                            <td class="message-text">@item.count</td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col question -->
+                    <div class="col-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">پرسشنامه ها </h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.questinnair(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="description">عنوان</th>
+                                            <th >تعداد درخواست</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in rep.questinnair(Model.RealClientID))
+                                        {
+                                        <tr>
+                                            <td class="message-text">@item.title</td>
+                                            <td class="message-text">@item.count</td>
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col questionnaire -->
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">پوسترها</h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.PostersCount(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="action">عملیات</th>
+                                            <th class="table-row">ردیف</th>
+                                            <th>نام</th>
+                                            @*<th>توضیح</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int n = 0;
+                                        }
+
+                                        @foreach (var item in rep.PostersCount(Model.RealClientID))
+                                        {
+                                            n++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-primary white-text" title="مشاهده فایل">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                    <button onclick="DeletePoster(@item.posterID,@Model.RealClientID)" class="btn btn-sm btn-danger white-text" title="حذف">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td>@n</td>
+                                                <td>@item.posterTitle</td>
+                                                @*<td>@item.de</td>*@
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col poster-->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">مقالات</h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.articlesCount(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="action">عملیات</th>
+                                            <th class="table-row">ردیف</th>
+                                            <th>نام</th>
+                                            <th>توضیح</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int j = 0;
+                                        }
+
+                                        @foreach (var item in rep.articlesCount(Model.RealClientID))
+                                        {
+                                            j++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a href="" class="btn btn-sm btn-primary white-text" title="مشاهده فایل">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                    <button onclick="DeleteArticle(@item.postID,@Model.RealClientID)" class="btn btn-sm btn-danger white-text" title="حذف">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td>@j</td>
+                                                <td>@item.postTitle</td>
+                                                <td>@item.postDescription</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col paper -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">کتاب ها</h3>
+                                <div class="card-tools">
+                                    <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                        تعداد :
+                                        @rep.booksCount(Model.RealClientID).Count()
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="info-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="action">عملیات</th>
+                                            <th class="table-row">ردیف</th>
+                                            <th>نام</th>
+                                            <th>توضیح</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int jj = 0;
+                                        }
+
+                                        @foreach (var item in rep.booksCount(Model.RealClientID))
+                                        {
+                                            jj++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    <button class="btn btn-sm btn-primary white-text" title="مشاهده فایل">
+                                                        <i class="fa fa-eye"></i>
+                                                    </button>
+                                                    <button onclick="DeleteBook(@item.postID,@Model.RealClientID)" class="btn btn-sm btn-danger white-text" title="حذف">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td>@jj</td>
+                                                <td>@item.postTitle</td>
+                                                <td>@item.postDescription</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col book -->
+                </div>
+
+            </div>
+
+</section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+
+        function DeleteArticle(id, userId) {
+            alert(id+"-"+ userId);
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteArticle", "appUsers")?id=' + id + '&userId=' + userId;
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+        function DeleteBook(id, userId) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteBook", "appUsers")?id=' + id + '&userId=' + userId;
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+
+        function DeletePoster(id, userId) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeletePoster", "appUsers")?id=' + id + '&userId=' + userId;
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+    </script>
+}

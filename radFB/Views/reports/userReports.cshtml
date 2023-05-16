@@ -1,0 +1,342 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "userReports";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>گزارش های کاربران</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item active">گزارش های کاربران</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            گزارش های کاربران برنامه
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <form role="form" asp-action="userReports" asp-controller="reports" method="post">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tele">نام ثبت کننده</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="وارد کردن نام">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد پست بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="postCount" name="postCount"
+                                               placeholder="وارد کردن تعداد پست">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد کتاب بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="bookCount" name="bookCount"
+                                               placeholder="وارد کردن تعداد کتاب">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد مقاله بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="articleCount" name="articleCount"
+                                               placeholder="وارد کردن تعداد مقاله">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد پرسشنامه بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="questinierCount" name="questinierCount"
+                                               placeholder="وارد کردن تعداد پرسشنامه">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد پاسخ پرسشنامه بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="questinierAnswerCount" name="questinierAnswerCount"
+                                               placeholder="وارد کردن تعداد پاسخ به پرسشنامه">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد سوال بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="questionCount" name="questionCount"
+                                               placeholder="وارد کردن تعداد سوال">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد پاسخ به سوال بیش از</label>
+                                        <input type="number" class="form-control" id="questionAnswer"
+                                               value="0" name="questionAnswer" placeholder="وارد کردن تعداد پاسخ به سوال">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد ثبت آگهی بیش از</label>
+                                        <input value="0" type="number" class="form-control" name="advCount" id="advCount" placeholder="وارد کردن تعداد ثبت آگهی">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد پاسخ به آگهی بیش از</label>
+                                        <input type="number" class="form-control" id="advAnswer"
+                                               value="0" name="advAnswer" placeholder="وارد کردن تعداد پاسخ به آگهی">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تعداد شرکت در پوستر بیش از</label>
+                                        <input type="number" value="0" class="form-control" id="posterParticipateCount" name="posterParticipateCount"
+                                               placeholder="وارد کردن تعداد شرکت در پوستر">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="lastLogin">
+                                            <input type="checkbox" class="flat-red" name="lastLogin" value="true">
+                                            مرتب سازی براساس آخرین بازدید
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">جست و جو</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- ./card -->
+                @if (TempData["notFound"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["notFound"]
+                        </div>
+                    }
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">نتایج</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                تعداد :
+                                @ViewBag.count
+                            </span>
+                            <button id="pdf" class="btn btn-warning">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                خرجی گرفتن
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div id="tab" class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>عملیات</th>
+                                    <th class="table-row">ردیف</th>
+                                    <th>نام کاربر</th>
+                                    <th>موبایل</th>
+                                    <th>تعداد پست</th>
+                                    <th>تعداد آگهی</th>
+                                    <th>تعداد پاسخ به آگهی</th>
+                                    <th>تعداد سوال</th>
+                                    <th>تعداد پاسخ به سوال</th>
+                                    <th>تعداد کتاب</th>
+                                    <th>تعداد مقاله</th>
+                                    <th>تعدادپرسشنامه</th>
+                                    <th>تعداد پاسخ به پرسشنامه</th>
+                                    <th>تعداد شرکت در پوستر </th>
+
+                                </tr>
+                            </thead>
+                            @if (ViewBag.userList != null)
+                            {
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        foreach (var item in ViewBag.userList)
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    @if (item.userType == "حقیقی")
+                                                    {
+                                                        <a asp-action="showRealClient" asp-controller="appUsers" asp-route-id="@item.ID" class="btn btn-sm btn-info white-text" title="مشاهده اطلاعات کامل">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="showLegalClient" asp-controller="appUsers" asp-route-id="@item.ID" class="btn btn-sm btn-info white-text" title="مشاهده اطلاعات کامل">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+                                                </td>
+                                                <td>@i</td>
+                                                <td>@item.userName</td>
+                                                <td>@item.tell</td>
+                                                <td>@item.postCount</td>
+                                                <td>@item.advPostCount</td>
+                                                <td>@item.answerToAdvCount</td>
+                                                <td>@item.questionCount</td>
+                                                <td>@item.answerToQuestionCount</td>
+                                                <td>@item.bookCount</td>
+                                                <td>@item.articleCount</td>
+                                                <td>@item.questinierCount</td>
+                                                <td>@item.answerToquestinierCount</td>
+                                                <td>@item.posterParticipateCount</td>
+
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    },
+                    "search": "جست و جو : ",
+                    "lengthMenu": "نمایش _MENU_ مورد در هر صفحه",
+                    "emptyTable": "داده ای موجود نیست"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+            var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        $('.date-picker').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+        });
+
+
+
+
+        function createPDF() {
+            var sTable = document.getElementById('tab').innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;direction:rtl;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body>');
+            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
+        }
+        $('#pdf').on('click', function () {
+            createPDF();
+        });
+
+
+
+    </script>
+}
+

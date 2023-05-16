@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/radFB/.config
+/radFB/.vscode
+/radFB/bin
+/radFB/obj
+/radFB/Properties

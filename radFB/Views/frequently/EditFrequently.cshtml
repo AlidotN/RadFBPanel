@@ -1,0 +1,124 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.db.Tbl_FrequentlyAskedQuestions
+@{
+    ViewData["Title"] = "EditFrequently";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">سوالات متداول</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="frequently">سوالات متداول</a></li>
+                        <li class="breadcrumb-item active">ویرایش کردن</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                سوالات متداول
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <form role="form" method="post" asp-action="EditFrequently" asp-controller="frequently">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="type">دسته بندی</label>
+                                            <select asp-for="fk_SubjectID" asp-items="ViewBag.Frequently" class="form-control select2">
+                                                <option>انتخاب کنید</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="question">سوال</label>
+                                            <input asp-for="prQuestion" type="text" class="form-control" id="question"
+                                                value="@Model.prQuestion"   placeholder="سوال مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="questionEn">سوال به انگلیسی</label>
+                                            <input asp-for="EnQuestion" type="text" class="form-control" id="questionEn"
+                                                 value="@Model.EnQuestion"   placeholder="سوال مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="answer">پاسخ سوال</label>
+                                            <textarea asp-for="prAnswer" id="editor1"  style="width: 100%">@Model.prAnswer</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="answerEn">پاسخ سوال به انگلیسی</label>
+                                            <textarea asp-for="EnAnswer" id="editor2" 
+                                                      style="width: 100%">@Model.EnAnswer</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="frequently" class="btn btn-primary">بازگشت به لیست</a>
+                                <button type="submit" class="btn btn-success">ثبت</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+        $(function () {
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+            ClassicEditor
+                .create(document.querySelector('#editor2'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+        })
+    </script>
+}
+

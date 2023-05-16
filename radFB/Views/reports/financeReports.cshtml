@@ -1,0 +1,262 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.ViewModels.VmFinanceReports
+@using radFB.db
+@{
+    ViewData["Title"] = "financeReports";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>گزارش ها</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item active">گزارش های مالی</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            گزارش های مالی برنامه
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <form role="form" asp-action="financeReports" asp-controller="reports" method="post">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tele">نام ثبت کننده</label>
+                                        <input name="name" type="text" class="form-control" id="accessName"
+                                               placeholder="وارد کردن نام">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>مبلغ</label>
+                                        <input name="price" type="number" class="form-control" id="accessName"
+                                               placeholder="مبلغ خرید">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4"></div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input name="d1" class="date-picker form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input name="d2" class="date-picker form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">جست و جو</button>
+                        </div>
+                    </form>
+                </div>
+                @if (TempData["notFound"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["notFound"]
+                        </div>
+                    }
+                <!-- ./card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">نتایج</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                تعداد :
+                                @ViewBag.count
+                            </span>
+                            <button id="pdf" class="btn btn-warning">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                خرجی گرفتن
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div id="tab" class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">                       
+                            <thead>
+                                <tr><th colspan="5" style="text-align:center"><br /><h4>گزارش مالی</h4></th></tr>
+                                <tr>
+                                    <th class="table-row">ردیف</th>
+                                    <th>نام کاربر</th>
+                                    <th>شماره فاکتور</th>
+                                    <th>هزینه فاکتور</th>
+                                    <th>تاریخ</th>
+                                </tr>
+                            </thead>
+                            @if (ViewBag.list != null)
+                            {
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        foreach (var item in ViewBag.list)
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td>@i</td>
+                                                <td>@item.userName</td>
+                                                <td>@item.factorNumber</td>
+                                                <td>@item.price</td>
+                                                <td>@item.date</td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    },
+                    "search": "جست و جو : ",
+                    "lengthMenu": "نمایش _MENU_ مورد در هر صفحه",
+                    "emptyTable": "داده ای موجود نیست"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+            var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        $('.date-picker').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+        });
+
+
+
+
+        function createPDF() {
+            var sTable = document.getElementById('tab').innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;direction:rtl;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body>');
+            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
+        }
+        $('#pdf').on('click', function () {
+            createPDF();
+        });
+
+    </script>
+    }
+

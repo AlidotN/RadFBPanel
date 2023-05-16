@@ -1,0 +1,241 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.db.Tbl_siteSetting
+@{
+    ViewData["Title"] = "settingApp";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">تنظیمات</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item active">تنظیمات</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                تنظیمات اصلی برنامه RadFB
+                            </h3>
+                            @if (TempData["UpdateAction"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-check"></i> توجه!</h6>
+                            @TempData["UpdateAction"]
+                        </div>
+                    }
+                            @if (TempData["AddAction"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-check"></i> توجه!</h6>
+                            @TempData["AddAction"]
+                        </div>
+                    }
+                            @if (TempData["problem"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["problem"]
+                        </div>
+                    }
+
+                        </div><!-- /.card-header -->
+                        <form role="form" asp-action="settingApp" asp-controller="settings" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">شماره های تماس</label>
+                                            <input asp-for="phoneNumbers" type="tel" class="form-control" id="tele"
+                                                   placeholder="لطفا شماره های پشتیبانی را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="email">ایمیل</label>
+                                            <input asp-for="Email" type="email" class="form-control" id="email"
+                                                   placeholder="ایمیل را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="telegram">تلگرام</label>
+                                            <input asp-for="TelegramID" type="text" class="form-control" id="telegram"
+                                                   placeholder="آیدی تلگرام را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="whatsapp">شماره واتساپ</label>
+                                            <input asp-for="WhatsAppPhoneNumber" type="tel" class="form-control" id="whatsapp"
+                                                   placeholder="لطفا شماره واتساپ را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="instagram">اینستاگرام</label>
+                                            <input asp-for="instagramID" type="text" class="form-control" id="instagram"
+                                                   placeholder="آیدی اینستاگرام را وارد کنید">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="report2block">تعداد مجاز ریپورت</label>
+                                            <input asp-for="allowedBlock" type="number" class="form-control" id="report2block"
+                                                   placeholder="کاربر پس از چندبار ریپورت، بلاک می شود">
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="expireq">منقضی شدن سوال پس از</label>
+                                            <input type="number" class="form-control" id="expireq"
+                                                placeholder="تعداد روز دردسترس بودن سوال">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="expireqn">منقضی شدن پرسشنامه پس از</label>
+                                            <input type="number" class="form-control" id="expireqn"
+                                                placeholder="تعداد روز در دسترس بودن پرسشنامه">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="expireadv">منقضی شدن آگهی پس از</label>
+                                            <input type="number" class="form-control" id="expireadv"
+                                                placeholder="تعداد روز در دسترس بودن آگهی">
+                                        </div>
+                                    </div> -->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="aboutus">درباره ما</label>
+                                            <textarea asp-for="PrAboutUS" id="editor1" 
+                                                      style="width: 100%"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="aboutus">درباره ما به انگلیسی</label>
+                                            <textarea asp-for="enAboutUS" id="editor1En"
+                                                      style="width: 100%"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="rule">قوانین</label>
+                                            <textarea asp-for="PrRules" id="editor2" style="width: 100%"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="rule">قوانین به انگلیسی</label>
+                                            <textarea asp-for="enRules" id="editor2En"
+                                                      style="width: 100%"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="rule">دموی برنامه</label>
+                                            <textarea asp-for="PrDemo" id="editor3" style="width: 100%"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="rule">دموی برنامه به انگلیسی</label>
+                                            <textarea asp-for="EnDemo" id="editor3En"
+                                                      style="width: 100%"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">ثبت</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+        $(function () {
+            // Replace the <textarea id="editor1"> with a CKEditor
+            // instance, using default configuration.
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+
+            ClassicEditor
+                .create(document.querySelector('#editor2'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+
+            ClassicEditor
+                .create(document.querySelector('#editor3'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+            ClassicEditor
+                .create(document.querySelector('#editor1En'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+
+            ClassicEditor
+                .create(document.querySelector('#editor2En'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+
+            ClassicEditor
+                .create(document.querySelector('#editor3En'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                })
+        })
+    </script>
+}

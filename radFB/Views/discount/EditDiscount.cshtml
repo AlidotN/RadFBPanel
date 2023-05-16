@@ -1,0 +1,107 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.db.Tbl_discount
+@{
+    ViewData["Title"] = "EditDiscount";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">کدهای تخفیف</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="discount">کد های تخفیف</a></li>
+                        <li class="breadcrumb-item active">ویرایش کردن</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                کدهای تخفیف در برنامه
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <form role="form" asp-action="EditDiscount" asp-controller="discount" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                    <input asp-for="discountID" type="hidden" />
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">نام کد</label>
+                                            <input asp-for="discountTitle" type="text" class="form-control" id="name"
+                                                   placeholder="نام مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">درصد تخفیف</label>
+                                            <input asp-for="discountPercent" type="number" class="form-control" id="count"
+                                                   placeholder="درصد مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>تاریخ شروع</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input asp-for="startDate" class="date-picker form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>تاریخ اعتبار</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input asp-for="endDate" class="date-picker form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="discount" type="submit" class="btn btn-primary">بازگشت به لیست</a>
+                                <button type="submit" class="btn btn-success">ویرایش</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

@@ -1,0 +1,500 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model radFB.ViewModels.VmSearchPoster
+@{
+    ViewData["Title"] = "searchPoster";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    radFB.Classes.publicFunctions rep = new radFB.Classes.publicFunctions();
+
+    radFB.Classes.publicFunctions publicFunctions = new radFB.Classes.publicFunctions();
+    bool roleID = publicFunctions.DeleteInformations(User.Identity.Name);
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>پوستر ها</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="poster">پوستر ها</a></li>
+                        <li class="breadcrumb-item active">جست و جوی پوستر</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            پوستر های قرار گرفته در برنامه
+                        </h3>
+
+                        @if (TempData["seccessDelete"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-check"></i> توجه!</h6>
+                            @TempData["seccessDelete"]
+                        </div>
+                    }
+                        @if (TempData["FailedDelete"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["FailedDelete"]
+                        </div>
+                    }
+                        @if (TempData["notFound"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> توجه!</h6>
+                            @TempData["notFound"]
+                        </div>
+                    }
+                        <br />
+                    </div><!-- /.card-header -->
+                    <form role="form" asp-action="searchPoster" asp-controller="poster" method="post">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="name">کاربر ثبت کننده</label>
+                                        <input type="text" class="form-control" id="name"
+                                            asp-for="user"   placeholder="وارد کردن نام" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="title">عنوان</label>
+                                        <input type="text" class="form-control" id="title"
+                                             asp-for="posterTitle"  placeholder="عنوان موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="subject">موضوع</label>
+                                        <input type="text" class="form-control" id="subject"
+                                            asp-for="posterSubject"   placeholder="موضوع موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="contact">مخاطبین</label>
+                                        <input type="text" class="form-control" id="contact"
+                                            asp-for="posterContacts"   placeholder="مخاطبین موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="gender">جنسیت</label>
+                                        <div>
+                                            <label class="radioTxt">
+                                                <input type="radio" value="زن" asp-for="gender" class="flat-red" id="female">
+                                                زن
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" value="مرد" asp-for="gender" class="flat-red" id="male">
+                                                مرد
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" value="سایر" asp-for="gender" class="flat-red" id="other">
+                                                سایر
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" value="همه" asp-for="gender" class="flat-red" id="all" checked>
+                                                همه
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="type_perform">نوع برگذاری</label>
+                                        <div>
+                                            <label class="radioTxt">
+                                                <input type="radio" asp-for="OnlineOflineStatus" value="1" class="flat-red" id="online">
+                                                آنلاین
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" asp-for="OnlineOflineStatus" value="0" class="flat-red" id="offline">
+                                                آفلاین
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" asp-for="OnlineOflineStatus" value="2" class="flat-red" id="offline" checked>
+                                                همه
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="country">کشور</label>
+                                        <input type="text" class="form-control" id="country"
+                                             asp-for="country"  placeholder="کشور موردنظر">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="city">شهر</label>
+                                        <input type="text" class="form-control" id="city"
+                                            asp-for="posterCity"   placeholder="شهر موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="address">آدرس و محل</label>
+                                        <input type="text" class="form-control" id="address"
+                                            asp-for="posterAddress"   placeholder="آدرس موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="telephone">شماره تلفن</label>
+                                        <input type="text" class="form-control" id="telephone"
+                                            asp-for="posterPhoneNumber"   placeholder="شماره موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="grade">مدرک</label>
+                                        <input type="text" class="form-control" id="grade"
+                                           asp-for="posterDegree"    placeholder="مدرک موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="prerequisite">پیشنیاز</label>
+                                        <input type="text" class="form-control" id="prerequisite"
+                                            asp-for="posterPrerequisites"   placeholder="پیشنیاز موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="etc">سایر اطلاعات</label>
+                                        <input type="text" class="form-control" id="etc"
+                                              asp-for="posterOtherThings" placeholder="سایر اطلاعات موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="type">نوع</label>
+                                        <input type="text" class="form-control" id="type"
+                                             asp-for="posterType"  placeholder="نوع موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="capacity">ظرفیت بیش از</label>
+                                        <input type="number" class="form-control" id="capacity"
+                                             asp-for="PosterCapacity"  placeholder="ظرفیت موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="price">هزینه بیش از</label>
+                                        <input type="number" class="form-control" id="price"
+                                            asp-for="posterCoust"   placeholder="هزینه موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>از تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input asp-for="posterStartDate" class="date-picker form-control" id="startDate" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>تا تاریخ</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input asp-for="posterEndDate" class="date-picker form-control" id="endDate" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="days">روز های هفته</label>
+                                        <input type="text" class="form-control" id="days"
+                                            asp-for="daysOfWeek"   placeholder="روز های موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="hours">ساعت در روز</label>
+                                        <input type="text" class="form-control" id="hours"
+                                            asp-for="timesOfDay"   placeholder="ساعت های موردنظر" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="status">وضعیت انتشار</label>
+                                        <div>
+                                            <label class="radioTxt">
+                                                <input type="radio" class="flat-red" asp-for="posterStatus" value="1" id="confirmed">
+                                                تایید شده
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" class="flat-red" asp-for="posterStatus" value="0" id="uncomfirmed">
+                                                تایید نشده
+                                            </label>
+                                            <label class="radioTxt">
+                                                <input type="radio" class="flat-red" asp-for="posterStatus" value="2" id="uncomfirmed" checked>
+                                                 همه
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">جست و جو</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">نتایج</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                تعداد :
+                                @ViewBag.count
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="select"></th>
+                                    <th class="action">عملیات</th>
+                                    <th class="table-row">ردیف</th>
+                                    <th>ثبت کننده</th>
+                                    <th>عنوان</th>
+                                    <th>نوع</th>
+                                    <th>مخاطبین</th>
+                                    <th>شماره</th>
+                                    <th>آدرس</th>
+                                    <th class="status">وضعیت</th>
+                                </tr>
+                            </thead>
+                            @if (ViewBag.list != null)
+                            {
+                        <tbody>
+                            @{
+                                int i = 0;
+                                foreach (var item in ViewBag.list)
+                                {
+                                    i++;
+                                    <tr>
+                                        <td class="text-center"><input value="@item.posterID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
+                                        <td>
+                                            <a asp-action="showPoster" asp-controller="poster" asp-route-id="@item.posterID" class="btn btn-sm btn-info white-text" title="مشاهده">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            @if (roleID == true)
+                                            {
+                                                <button id="@item.posterID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="حذف">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            }
+
+                                        </td>
+                                        <td>@i</td>
+                                        <td>@rep.fullName(item.fk_userID)</td>
+                                        <td>@item.posterTitle</td>
+                                        <td>@item.posterType</td>
+                                        <td>@item.posterContacts</td>
+                                        <td>@item.posterPhoneNumber</td>
+                                        <td class="message-text">@item.posterAddress</td>
+                                        <td class="text-center">
+                                            @if (item.posterStatus == true)
+                                            {
+                                                <i class="fa fa-check" title="منتشر شده"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-ban" title="عدم تایید"></i>
+                                            }
+
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                            }
+                            
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    },
+                    "search": "جست و جو : ",
+                    "lengthMenu": "نمایش _MENU_ مورد در هر صفحه",
+                    "emptyTable": "داده ای موجود نیست"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.date-picker').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        function DeleteAll() {
+            var deleteItems = activity;
+
+                  $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAllPoster", "poster", new { deleteItems = "items" })'.replace("items", deleteItems);
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+
+
+         function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeletePoster", "poster", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+    </script>
+}

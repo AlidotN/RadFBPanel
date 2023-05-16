@@ -1,0 +1,260 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<radFB.ViewModels.VmDiscont>
+@{
+    ViewData["Title"] = "searchDiscount";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    radFB.Classes.publicFunctions publicFunctions = new radFB.Classes.publicFunctions();
+    bool roleID = publicFunctions.DeleteInformations(User.Identity.Name);
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">جستجوی کدهای تخفیف</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">خانه</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="discount">کدهای تخفیف</a></li>
+                        <li class="breadcrumb-item active">جستجو کردن</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                کدهای تخفیف در برنامه
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <form role="form" asp-action="searchDiscount" asp-controller="discount" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">نام کد</label>
+                                            <input name="title" type="text" class="form-control" id="name"
+                                                   placeholder="نام مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">درصد تخفیف</label>
+                                            <input name="percent" type="number" class="form-control" id="count"
+                                                   placeholder="درصد مورد نظر">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>اعتبار تا تاریخ</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input name="date" class="date-picker form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">جست و جو</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">نتایج</h3>
+                            <div class="card-tools">
+                                <span data-toggle="tooltip" title="تعداد داده ها" class="badge bg-success">
+                                    تعداد
+                                    :  @ViewBag.count
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="info-table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="action">عملیات</th>
+                                        <th class="table-row">ردیف</th>
+                                        <th>نام کد</th>
+                                        <th>درصد تخفیف</th>
+                                        <th>تاریخ اعتبار</th>
+                                    </tr>
+                                </thead>
+                                @if (Model != null)
+                                {
+                                    <tbody>
+                                        @{
+                                            int i = 0;
+                                            @foreach (var item in Model)
+                                            {
+                                                i++;
+                                                <tr>
+
+                                                    <td class="text-center">
+                                                        <a asp-action="EditDiscount" asp-controller="discount" asp-route-id="@item.discountID" class="btn btn-sm btn-primary white-text" title="ویرایش">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        @if (roleID == true)
+                                                        {
+                                                            <button id="@item.discountID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="حذف">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        }
+
+                                                    </td>
+                                                    <td>@i</td>
+                                                    <td>@item.discountTitle</td>
+                                                    <td>@item.discountPercent</td>
+                                                    <td>@item.endDate</td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                        "next": "بعدی",
+                        "previous": "قبلی"
+                    },
+                    "search": "جست و جو : ",
+                    "lengthMenu": "نمایش _MENU_ مورد در هر صفحه",
+                    "emptyTable": "داده ای موجود نیست"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+
+
+
+
+
+        function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: 'حذف',
+            content: 'ایا از حذف این مورد اطمینان دارید؟',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: 'بله',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteDiscount", "discount", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                    text: 'خیر',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+        $('.date-picker').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+        });
+
+    </script>
+}
+
+
