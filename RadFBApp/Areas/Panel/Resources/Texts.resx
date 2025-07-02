@@ -1,0 +1,1257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accepted" xml:space="preserve">
+    <value>پذیرفته شد</value>
+  </data>
+  <data name="Access" xml:space="preserve">
+    <value>سطح دسترسی</value>
+  </data>
+  <data name="Accesses" xml:space="preserve">
+    <value>سطوح دسترسی</value>
+  </data>
+  <data name="AccessInPanel" xml:space="preserve">
+    <value>سطوح دسترسی در پنل مدیریت</value>
+  </data>
+  <data name="AccessName" xml:space="preserve">
+    <value>نام سطح دسترسی</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>اضافه کردن</value>
+  </data>
+  <data name="Advs" xml:space="preserve">
+    <value>آگهی ها</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>اضافه کردن کاربر</value>
+  </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>پنل مدیریت</value>
+  </data>
+  <data name="AdminPanelUsers" xml:space="preserve">
+    <value>کاربران پنل مدیریت</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>بازگشت به لیست</value>
+  </data>
+  <data name="Choose" xml:space="preserve">
+    <value>انتخاب کنید</value>
+  </data>
+  <data name="ChoosePic" xml:space="preserve">
+    <value>انتخاب عکس</value>
+  </data>
+  <data name="CorrectEmail" xml:space="preserve">
+    <value>ایمیل صحیح است</value>
+  </data>
+  <data name="Crit&amp;Sug" xml:space="preserve">
+    <value>انتقادات و پیشنهادات</value>
+  </data>
+  <data name="DeleteInfo" xml:space="preserve">
+    <value>حذف اطلاعات</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="Example" xml:space="preserve">
+    <value>مثال</value>
+  </data>
+  <data name="FillEmail" xml:space="preserve">
+    <value>لطفا ایمیل خود را وارد کنید</value>
+  </data>
+  <data name="FinanceWorks" xml:space="preserve">
+    <value>امور مالی</value>
+  </data>
+  <data name="ForbiddenWords" xml:space="preserve">
+    <value>کلمات غیرمجاز</value>
+  </data>
+  <data name="Fullname" xml:space="preserve">
+    <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="Img" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>شماره موبایل</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>رمز عبور</value>
+  </data>
+  <data name="Posts" xml:space="preserve">
+    <value>پست ها</value>
+  </data>
+  <data name="PremiumPackages" xml:space="preserve">
+    <value>بسته های پرمیوم</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>سوالات</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
+  <data name="SameEmail" xml:space="preserve">
+    <value>ایمیل تکراری است</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>ثبت</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>عنوان</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>کاربران</value>
+  </data>
+  <data name="WrongEmail" xml:space="preserve">
+    <value>ایمیل صحیح نیست</value>
+  </data>
+  <data name="WrongPass" xml:space="preserve">
+    <value> رمز عبور صحیح نیست</value>
+  </data>
+  <data name="ForbiddenWordInApp" xml:space="preserve">
+    <value> کلمات غیر مجاز در برنامه</value>
+  </data>
+  <data name="FaTitle" xml:space="preserve">
+    <value>عنوان فارسی</value>
+  </data>
+  <data name="EnTitle" xml:space="preserve">
+    <value>عنوان انگلیسی</value>
+  </data>
+  <data name="DesiredWord" xml:space="preserve">
+    <value>کلمه مورد نظر</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>ویرایش کاربر</value>
+  </data>
+  <data name="ToEdit" xml:space="preserve">
+    <value>ویرایش کردن</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
+  <data name="PostsCount" xml:space="preserve">
+    <value>تعداد پست ها</value>
+  </data>
+  <data name="MoreInfo" xml:space="preserve">
+    <value>اطلاعات بیشتر</value>
+  </data>
+  <data name="AdvsCount" xml:space="preserve">
+    <value>تعداد آگهی ها</value>
+  </data>
+  <data name="UserRegistered" xml:space="preserve">
+    <value>کاربران ثبت شده</value>
+  </data>
+  <data name="NewView" xml:space="preserve">
+    <value>بازدید جدید</value>
+  </data>
+  <data name="QuestionnairesCount" xml:space="preserve">
+    <value>تعداد پرسشنامه ها</value>
+  </data>
+  <data name="QuestionsCount" xml:space="preserve">
+    <value>تعداد سوالات</value>
+  </data>
+  <data name="MostVisitedAdvs" xml:space="preserve">
+    <value>آگهی های پربازدید</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>اطلاعات</value>
+  </data>
+  <data name="MostVisitedPosts" xml:space="preserve">
+    <value>پست های پربازدید</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>فایل</value>
+  </data>
+  <data name="Article" xml:space="preserve">
+    <value>مقاله</value>
+  </data>
+  <data name="PreviewFile" xml:space="preserve">
+    <value>مشاهده فایل</value>
+  </data>
+  <data name="MostVisitedQuestions" xml:space="preserve">
+    <value>سوالات پربازدید</value>
+  </data>
+  <data name="QuestionText" xml:space="preserve">
+    <value>متن سوال</value>
+  </data>
+  <data name="MostVisitedQuestionnaires" xml:space="preserve">
+    <value>پرسشنامه های پربازدید</value>
+  </data>
+  <data name="Desc" xml:space="preserve">
+    <value>توضیح</value>
+  </data>
+  <data name="MostVisitedProfile" xml:space="preserve">
+    <value>پروفایل های پربازدید</value>
+  </data>
+  <data name="NameOfUser" xml:space="preserve">
+    <value>نام کاربر</value>
+  </data>
+  <data name="LoginPage" xml:space="preserve">
+    <value>صفحه ورود</value>
+  </data>
+  <data name="User_Name" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="Fill_Login" xml:space="preserve">
+    <value>فرم زیر را تکمیل کنید و ورود را بزنید</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="ForgottenMyPass" xml:space="preserve">
+    <value>رمز عبور خود را فراموش کرده ام</value>
+  </data>
+  <data name="AddedAccesses" xml:space="preserve">
+    <value>سطوح دسترسی تعریف شده</value>
+  </data>
+  <data name="ToAdd" xml:space="preserve">
+    <value>اضافه کردن</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جست و جو</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="Row" xml:space="preserve">
+    <value>ردیف</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="SureToDelete" xml:space="preserve">
+    <value>آیا از حذف این مورد اطمینان دارید؟</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>بله</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>خیر</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>لغو</value>
+  </data>
+  <data name="DeleteSelected" xml:space="preserve">
+    <value>حذف موارد</value>
+  </data>
+  <data name="InfoCount" xml:space="preserve">
+    <value>تعداد داده ها</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="UserImg" xml:space="preserve">
+    <value>عکس کاربر</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>ثبت کننده</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>تاریخ</value>
+  </data>
+  <data name="Word" xml:space="preserve">
+    <value>کلمه</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>بعدی</value>
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value>قبلی</value>
+  </data>
+  <data name="NoData" xml:space="preserve">
+    <value>داده ای موجود نیست</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>مشاهده</value>
+  </data>
+  <data name="SureToDeleteCount" xml:space="preserve">
+    <value>آیا از حذف این موارد اطمینان دارید؟</value>
+  </data>
+  <data name="RegisteredAdvs" xml:space="preserve">
+    <value>آگهی های ثبت شده</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>حقوق</value>
+  </data>
+  <data name="Skill" xml:space="preserve">
+    <value>مهارت</value>
+  </data>
+  <data name="Experience" xml:space="preserve">
+    <value>تجربه کاری</value>
+  </data>
+  <data name="Province" xml:space="preserve">
+    <value>استان</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>زمان</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+  <data name="PreviewDetails" xml:space="preserve">
+    <value>مشاهده جزییات</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>عدم تایید</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>منتشر شده</value>
+  </data>
+  <data name="RegisteredAdv" xml:space="preserve">
+    <value>آگهی ثبت شده</value>
+  </data>
+  <data name="RegisteredName" xml:space="preserve">
+    <value>نام ثبت کننده</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
+  <data name="MilitaryStatus" xml:space="preserve">
+    <value>وضعیت سربازی</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>دسته بندی</value>
+  </data>
+  <data name="Grade" xml:space="preserve">
+    <value>تحصیلات</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+  <data name="WorkTime" xml:space="preserve">
+    <value>زمان کاری</value>
+  </data>
+  <data name="AdvStatus" xml:space="preserve">
+    <value>وضعیت آگهی</value>
+  </data>
+  <data name="AdvOwner" xml:space="preserve">
+    <value>آگهی دهنده</value>
+  </data>
+  <data name="FillName" xml:space="preserve">
+    <value>وارد کردن نام</value>
+  </data>
+  <data name="NotAccepted" xml:space="preserve">
+    <value>تایید نشده</value>
+  </data>
+  <data name="Employer" xml:space="preserve">
+    <value>کارفرما</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>استخدام شونده</value>
+  </data>
+  <data name="InactiveUsers" xml:space="preserve">
+    <value>کاربران غیرفعال شده</value>
+  </data>
+  <data name="InactiveDate" xml:space="preserve">
+    <value>تاریخ غیرفعال شدن</value>
+  </data>
+  <data name="UserStatus" xml:space="preserve">
+    <value>وضعیت کاربر</value>
+  </data>
+  <data name="SureToActive" xml:space="preserve">
+    <value>آیا از فعال کردن کاربر موردنظر اطمینان دارید؟</value>
+  </data>
+  <data name="UsersData" xml:space="preserve">
+    <value>اطلاعات کاربران</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>نوع کاربر</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>آخرین ورود</value>
+  </data>
+  <data name="Legal" xml:space="preserve">
+    <value>حقوقی</value>
+  </data>
+  <data name="Real" xml:space="preserve">
+    <value>حقیقی</value>
+  </data>
+  <data name="PreviewFullData" xml:space="preserve">
+    <value>مشاهده اطلاعات کامل</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>مسدود</value>
+  </data>
+  <data name="SureToInactive" xml:space="preserve">
+    <value>آیا از غیرفعال کردن کاربر موردنظر اطمینان دارید؟</value>
+  </data>
+  <data name="UserMessages" xml:space="preserve">
+    <value>پیام های کاربران</value>
+  </data>
+  <data name="MessagePagesCount" xml:space="preserve">
+    <value>تعداد صفحات پیام</value>
+  </data>
+  <data name="AllMessagesCount" xml:space="preserve">
+    <value>تعداد کل پیام ها</value>
+  </data>
+  <data name="MessagesDetails" xml:space="preserve">
+    <value>جزییات پیام ها</value>
+  </data>
+  <data name="ReceivedUser" xml:space="preserve">
+    <value>کاربر گیرنده</value>
+  </data>
+  <data name="MessageText" xml:space="preserve">
+    <value>متن پیام</value>
+  </data>
+  <data name="PreviewOneUser" xml:space="preserve">
+    <value>مشاهده یک کاربر</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value> نوع حساب</value>
+  </data>
+  <data name="CEOName" xml:space="preserve">
+    <value>نام مدیر عامل</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>نام شرکت</value>
+  </data>
+  <data name="RegisteredNumber" xml:space="preserve">
+    <value>شماره ثبت</value>
+  </data>
+  <data name="NationalID" xml:space="preserve">
+    <value>شناسه ملی</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="MembersCount" xml:space="preserve">
+    <value>تعداد اعضا</value>
+  </data>
+  <data name="EstablishmentDate" xml:space="preserve">
+    <value>تاریخ تاسیس</value>
+  </data>
+  <data name="InvitationCode" xml:space="preserve">
+    <value>کد معرف</value>
+  </data>
+  <data name="Activities" xml:space="preserve">
+    <value>فعالیت ها</value>
+  </data>
+  <data name="Experiences" xml:space="preserve">
+    <value>تجارب کاری</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>مهارت ها</value>
+  </data>
+  <data name="VoluntaryWorls" xml:space="preserve">
+    <value>کارهای داوطلبانه</value>
+  </data>
+  <data name="Prizes" xml:space="preserve">
+    <value>جوایز</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>علاقه مندی ها</value>
+  </data>
+  <data name="Articles" xml:space="preserve">
+    <value>مقالات</value>
+  </data>
+  <data name="Books" xml:space="preserve">
+    <value>کتاب ها</value>
+  </data>
+  <data name="Posters" xml:space="preserve">
+    <value>پوسترها</value>
+  </data>
+  <data name="EducationGrade" xml:space="preserve">
+    <value>میزان تحصیلات</value>
+  </data>
+  <data name="Marriage" xml:space="preserve">
+    <value>تاهل</value>
+  </data>
+  <data name="AttendProject" xml:space="preserve">
+    <value>تمایل به شرکت در پروژه ها</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
+  <data name="ItemInPage" xml:space="preserve">
+    <value>مورد در صفحه</value>
+  </data>
+  <data name="DiscountCodes" xml:space="preserve">
+    <value>کدهای تخفیف</value>
+  </data>
+  <data name="DiscountCodesInApp" xml:space="preserve">
+    <value>کدهای تخفیف در برنامه</value>
+  </data>
+  <data name="CodeName" xml:space="preserve">
+    <value>نام کد</value>
+  </data>
+  <data name="DiscountPercent" xml:space="preserve">
+    <value>درصد تخفیف</value>
+  </data>
+  <data name="ExpirationDate" xml:space="preserve">
+    <value>تاریخ اعتبار</value>
+  </data>
+  <data name="DesiredName" xml:space="preserve">
+    <value>نام مورد نظر</value>
+  </data>
+  <data name="DesiredPercent" xml:space="preserve">
+    <value>درصد مورد نظر</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>تاریخ شروع</value>
+  </data>
+  <data name="SearchDiscountCodes" xml:space="preserve">
+    <value>جست و جوی کدهای تخفیف</value>
+  </data>
+  <data name="ToSearch" xml:space="preserve">
+    <value>جست و جو کردن</value>
+  </data>
+  <data name="ValidUntilDate" xml:space="preserve">
+    <value>معتبر تا تاریخ</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>نتایج</value>
+  </data>
+  <data name="EnQuestion" xml:space="preserve">
+    <value>سوال به انگلیسی</value>
+  </data>
+  <data name="AnswerToQuestion" xml:space="preserve">
+    <value>پاسخ سوال</value>
+  </data>
+  <data name="EnAnswetToQuestion" xml:space="preserve">
+    <value>پاسخ سوال به انگلیسی</value>
+  </data>
+  <data name="FrequentlyQuestions" xml:space="preserve">
+    <value>سوالات متداول</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>سوال</value>
+  </data>
+  <data name="DesiredQuestion" xml:space="preserve">
+    <value>سوال مورد نظر</value>
+  </data>
+  <data name="FreQuestionsCat" xml:space="preserve">
+    <value>دسته بندی سوالات متداول</value>
+  </data>
+  <data name="Groups" xml:space="preserve">
+    <value>گروه ها</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>جزییات</value>
+  </data>
+  <data name="GroupTitle" xml:space="preserve">
+    <value>عنوان گروه</value>
+  </data>
+  <data name="Descriptions" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="CreatorUser" xml:space="preserve">
+    <value>کاربر ایجاد کننده</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>اعضا</value>
+  </data>
+  <data name="MessagesCount" xml:space="preserve">
+    <value>تعداد پیام</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>پیام ها</value>
+  </data>
+  <data name="Guilds" xml:space="preserve">
+    <value>اصناف</value>
+  </data>
+  <data name="GuildsInApp" xml:space="preserve">
+    <value>اصناف در برنامه</value>
+  </data>
+  <data name="ChooseColor" xml:space="preserve">
+    <value>انتخاب رنگ</value>
+  </data>
+  <data name="AddGuild" xml:space="preserve">
+    <value>اضافه کردن صنف</value>
+  </data>
+  <data name="JobsCategory" xml:space="preserve">
+    <value>دسته بندی مشاغل</value>
+  </data>
+  <data name="JobsCategoryInApp" xml:space="preserve">
+    <value>دسته بندی مشاغل در برنامه</value>
+  </data>
+  <data name="AddJobsCategory" xml:space="preserve">
+    <value>اضافه کردن دسته بندی مشاغل</value>
+  </data>
+  <data name="Majors" xml:space="preserve">
+    <value>رشته های تحصیلی</value>
+  </data>
+  <data name="MajorsInApp" xml:space="preserve">
+    <value>رشته های تحصیلی در برنامه</value>
+  </data>
+  <data name="AddMajor" xml:space="preserve">
+    <value>اضافه کردن رشته تحصیلی</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>هشدار</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>هشدارها</value>
+  </data>
+  <data name="DesiredTitle" xml:space="preserve">
+    <value>عنوان مورد نظر</value>
+  </data>
+  <data name="NotificationText" xml:space="preserve">
+    <value>متن هشدار</value>
+  </data>
+  <data name="EnNotificationText" xml:space="preserve">
+    <value>متن هشدار به انگلیسی</value>
+  </data>
+  <data name="EnterText" xml:space="preserve">
+    <value>وارد کردن متن</value>
+  </data>
+  <data name="Text" xml:space="preserve">
+    <value>متن</value>
+  </data>
+  <data name="EnText" xml:space="preserve">
+    <value>متن به انگلیسی</value>
+  </data>
+  <data name="AvailablePackageInApp" xml:space="preserve">
+    <value>بسته های پرمیوم موجود در برنامه</value>
+  </data>
+  <data name="PackageName" xml:space="preserve">
+    <value>نام بسته</value>
+  </data>
+  <data name="PackageOptions" xml:space="preserve">
+    <value>گزینه های بسته</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>قیمت</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>مدت زمان</value>
+  </data>
+  <data name="EnterPrice" xml:space="preserve">
+    <value>وارد کردن قیمت</value>
+  </data>
+  <data name="EnterDayCount" xml:space="preserve">
+    <value>وارد کردن تعداد روز</value>
+  </data>
+  <data name="RegisteredPackages" xml:space="preserve">
+    <value>بسته های ثبت شده</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>توجه</value>
+  </data>
+  <data name="AvailableOptions" xml:space="preserve">
+    <value>گزینه های موجود</value>
+  </data>
+  <data name="PricePerMonth" xml:space="preserve">
+    <value>مبلغ ماهیانه</value>
+  </data>
+  <data name="EditPost" xml:space="preserve">
+    <value>ویرایش پست</value>
+  </data>
+  <data name="RegisteredPostsInApp" xml:space="preserve">
+    <value>پست های ثبت شده در برنامه</value>
+  </data>
+  <data name="SearchPost" xml:space="preserve">
+    <value>جست و جوی پست</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>از تاریخ</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>تا تاریخ</value>
+  </data>
+  <data name="Contacts" xml:space="preserve">
+    <value>مخاطبینپ</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>آدرس</value>
+  </data>
+  <data name="SearchPoster" xml:space="preserve">
+    <value>جست و جوی پوستر</value>
+  </data>
+  <data name="RegisteredPostersInApp" xml:space="preserve">
+    <value>پوسترهای ثبت شده در برنامه</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>وارد کردن نام</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>موضوع</value>
+  </data>
+  <data name="SenderUser" xml:space="preserve">
+    <value>کاربر ارسال کننده</value>
+  </data>
+  <data name="DesiredSubject" xml:space="preserve">
+    <value>موضوع مورد نظر</value>
+  </data>
+  <data name="DesiredContacts" xml:space="preserve">
+    <value>مخاطبین مورد نظر</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>زن</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>مرد</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>سایر</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>همه</value>
+  </data>
+  <data name="HoldingType" xml:space="preserve">
+    <value>نوع برگزاری</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>آنلاین</value>
+  </data>
+  <data name="Offline" xml:space="preserve">
+    <value>آفلاین</value>
+  </data>
+  <data name="AddressPlace" xml:space="preserve">
+    <value>آدرس و محل</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>مدارک</value>
+  </data>
+  <data name="DesiredDocument" xml:space="preserve">
+    <value>مدرک مورد نظر</value>
+  </data>
+  <data name="DesiredCountry" xml:space="preserve">
+    <value>کشور مورد نظر</value>
+  </data>
+  <data name="DesiredCity" xml:space="preserve">
+    <value>شهر مورد نظر</value>
+  </data>
+  <data name="DesiredAddress" xml:space="preserve">
+    <value>آدرس مورد نظر</value>
+  </data>
+  <data name="DesiredMobile" xml:space="preserve">
+    <value>شماره مورد نظر</value>
+  </data>
+  <data name="Requirement" xml:space="preserve">
+    <value>پیشنیاز</value>
+  </data>
+  <data name="DesiredRequirement" xml:space="preserve">
+    <value>پیشنیاز مورد نظر</value>
+  </data>
+  <data name="OtherInfo" xml:space="preserve">
+    <value>سایر اطلاعات</value>
+  </data>
+  <data name="DesiredOtherInfo" xml:space="preserve">
+    <value>سایر اطلاعات مورد نظر</value>
+  </data>
+  <data name="DesiredType" xml:space="preserve">
+    <value>نوع مورد نظر</value>
+  </data>
+  <data name="MinCapacity" xml:space="preserve">
+    <value>ظرفیت بیش از</value>
+  </data>
+  <data name="DesiredCapacity" xml:space="preserve">
+    <value>ظرفیت مورد نظر</value>
+  </data>
+  <data name="MinPrice" xml:space="preserve">
+    <value>هزینه بیش از</value>
+  </data>
+  <data name="DesiredPrice" xml:space="preserve">
+    <value>هزینه مورد نظر</value>
+  </data>
+  <data name="DaysWeek" xml:space="preserve">
+    <value>روزهای هفته</value>
+  </data>
+  <data name="HourInDay" xml:space="preserve">
+    <value>ساعت در روز</value>
+  </data>
+  <data name="DesiredDays" xml:space="preserve">
+    <value>روزهای مورد نظر</value>
+  </data>
+  <data name="DesiredHours" xml:space="preserve">
+    <value>ساعت های مورد نظر</value>
+  </data>
+  <data name="PublishStatus" xml:space="preserve">
+    <value>وضعیت انتشار</value>
+  </data>
+  <data name="PreviewPoster" xml:space="preserve">
+    <value>نمایش پوستر</value>
+  </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>ظرفیت</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>تاریخ پایان</value>
+  </data>
+  <data name="PosterTemplates" xml:space="preserve">
+    <value>قالب های پوستر</value>
+  </data>
+  <data name="AddTemplate" xml:space="preserve">
+    <value>اضافه کردن قالب</value>
+  </data>
+  <data name="TemplateName" xml:space="preserve">
+    <value>نام قالب</value>
+  </data>
+  <data name="TemplateDesc" xml:space="preserve">
+    <value>توضیحات قالب</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>انتخاب فایل</value>
+  </data>
+  <data name="DesiredDesc" xml:space="preserve">
+    <value>توضیحات مورد نظر</value>
+  </data>
+  <data name="AnswerCount" xml:space="preserve">
+    <value>تعداد پاسخ</value>
+  </data>
+  <data name="SearchQuestion" xml:space="preserve">
+    <value>جست و جوی سوال</value>
+  </data>
+  <data name="RegisteredQuestionsInApp" xml:space="preserve">
+    <value>سوالات ثبت شده در برنامه</value>
+  </data>
+  <data name="QuestionTextInclude" xml:space="preserve">
+    <value>متن سوال شامل</value>
+  </data>
+  <data name="Subjects" xml:space="preserve">
+    <value>موضوع ها</value>
+  </data>
+  <data name="MinAnswerCount" xml:space="preserve">
+    <value>تعداد پاسخ بیشتر از</value>
+  </data>
+  <data name="DesiredNumber" xml:space="preserve">
+    <value>عدد مورد نظر</value>
+  </data>
+  <data name="PreviewQuestionDetails" xml:space="preserve">
+    <value>مشاهده جزییات سوال</value>
+  </data>
+  <data name="Answers" xml:space="preserve">
+    <value>پاسخ ها</value>
+  </data>
+  <data name="ReplierUser" xml:space="preserve">
+    <value>پاسخ دهنده</value>
+  </data>
+  <data name="ReplyText" xml:space="preserve">
+    <value>متن پاسخ</value>
+  </data>
+  <data name="Questionnaires" xml:space="preserve">
+    <value>پرسشنامه ها</value>
+  </data>
+  <data name="QuestionnaireTitle" xml:space="preserve">
+    <value>عنوان پرسشنامه</value>
+  </data>
+  <data name="Benefits" xml:space="preserve">
+    <value>مزایا</value>
+  </data>
+  <data name="ReplyingType" xml:space="preserve">
+    <value>نحوه پاسخ دهی</value>
+  </data>
+  <data name="RequestsList" xml:space="preserve">
+    <value>لیست درخواست ها</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>مستقیم</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>سایر</value>
+  </data>
+  <data name="QuestionnaireTemplates" xml:space="preserve">
+    <value>قالب های پرسشنامه</value>
+  </data>
+  <data name="EditTemplate" xml:space="preserve">
+    <value>ویرایش کردن قالب</value>
+  </data>
+  <data name="PurchasedPackageCount" xml:space="preserve">
+    <value>تعداد بسته های خریداری شده</value>
+  </data>
+  <data name="TotalPurchases" xml:space="preserve">
+    <value>جمع کل خریدها</value>
+  </data>
+  <data name="UsersOwnPackagesCount" xml:space="preserve">
+    <value>تعداد کاربران دارای بسته</value>
+  </data>
+  <data name="PaymentStatus" xml:space="preserve">
+    <value>وضعیت پرداخت</value>
+  </data>
+  <data name="UserPackageStatus" xml:space="preserve">
+    <value>وضعیت بسته کاربر</value>
+  </data>
+  <data name="Payed" xml:space="preserve">
+    <value>پرداخت شده</value>
+  </data>
+  <data name="NotPayed" xml:space="preserve">
+    <value>پرداخت نشده</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>منقضی شده</value>
+  </data>
+  <data name="FinanceReports" xml:space="preserve">
+    <value>گزارش های مالی</value>
+  </data>
+  <data name="AppFinanceReport" xml:space="preserve">
+    <value>گزارش های مالی برنامه</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>خروجی گرفتن</value>
+  </data>
+  <data name="FinanceReport" xml:space="preserve">
+    <value>گزارش مالی</value>
+  </data>
+  <data name="InvoiceNumber" xml:space="preserve">
+    <value>شماره فاکتور</value>
+  </data>
+  <data name="InvoiceCost" xml:space="preserve">
+    <value>هزینه فاکتور</value>
+  </data>
+  <data name="UsersReports" xml:space="preserve">
+    <value>گزارش های کاربران</value>
+  </data>
+  <data name="AppUsersReports" xml:space="preserve">
+    <value>گزارش های کاربران برنامه</value>
+  </data>
+  <data name="MinPostCount" xml:space="preserve">
+    <value>تعداد پست بیش از</value>
+  </data>
+  <data name="MinBookCount" xml:space="preserve">
+    <value>تعداد کتاب بیش از</value>
+  </data>
+  <data name="MinArticleCount" xml:space="preserve">
+    <value>تعداد مقاله بیش از</value>
+  </data>
+  <data name="MinQuestionnaireCount" xml:space="preserve">
+    <value>تعداد پرسشنامه بیش از</value>
+  </data>
+  <data name="MinReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ پرسشنامه بیش از</value>
+  </data>
+  <data name="MinQuestionCount" xml:space="preserve">
+    <value>تعداد سوال بیش از</value>
+  </data>
+  <data name="MinQuestionReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ به سوال بیش از</value>
+  </data>
+  <data name="MinAdvCount" xml:space="preserve">
+    <value>تعداد ثبت آگهی بیش از</value>
+  </data>
+  <data name="MinAdvReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ به آگهی بیش از</value>
+  </data>
+  <data name="MinAttendPosterCount" xml:space="preserve">
+    <value>تعداد شرکت در پوستر بیش از</value>
+  </data>
+  <data name="SortByLastView" xml:space="preserve">
+    <value>مرتب سازی براساس آخرین بازدید</value>
+  </data>
+  <data name="PostCount" xml:space="preserve">
+    <value>تعداد پست</value>
+  </data>
+  <data name="AdvCount" xml:space="preserve">
+    <value>تعداد آگهی</value>
+  </data>
+  <data name="AdvReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ به آگهی</value>
+  </data>
+  <data name="QuestionCount" xml:space="preserve">
+    <value>تعداد سوال</value>
+  </data>
+  <data name="QuestionReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ به سوال</value>
+  </data>
+  <data name="BookCount" xml:space="preserve">
+    <value>تعداد کتاب</value>
+  </data>
+  <data name="ArticleCount" xml:space="preserve">
+    <value>تعداد مقاله</value>
+  </data>
+  <data name="QuestionnaireCount" xml:space="preserve">
+    <value>تعداد پرسشنامه</value>
+  </data>
+  <data name="QuestionnaireReplyCount" xml:space="preserve">
+    <value>تعداد پاسخ به پرسشنامه</value>
+  </data>
+  <data name="AttendPosterCount" xml:space="preserve">
+    <value>تعداد شرکت در پوستر</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>وارد کردن</value>
+  </data>
+  <data name="MainRadFBSetting" xml:space="preserve">
+    <value>تنظیمات اصلی برنامه رادفبی</value>
+  </data>
+  <data name="PhoneNumbers" xml:space="preserve">
+    <value>شماره های تماس</value>
+  </data>
+  <data name="Telegram" xml:space="preserve">
+    <value>تلگرام</value>
+  </data>
+  <data name="WhatsappNumber" xml:space="preserve">
+    <value>شماره واتزاپ</value>
+  </data>
+  <data name="Instagram" xml:space="preserve">
+    <value>اینستاگرام</value>
+  </data>
+  <data name="AllowReportCount" xml:space="preserve">
+    <value>تعداد مجاز ریپورت</value>
+  </data>
+  <data name="AboutUs" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="EnAboutUs" xml:space="preserve">
+    <value>درباره ما به انگلیسی</value>
+  </data>
+  <data name="Rules" xml:space="preserve">
+    <value>قوانین</value>
+  </data>
+  <data name="EnRules" xml:space="preserve">
+    <value>قوانین به انگلیسی</value>
+  </data>
+  <data name="Demo" xml:space="preserve">
+    <value>دموی برنامه</value>
+  </data>
+  <data name="EnDemo" xml:space="preserve">
+    <value>دموی برنامه به انگلیسی</value>
+  </data>
+  <data name="EnterSupportNumbers" xml:space="preserve">
+    <value>شماره های پشتیبانی را وارد کنید</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>ایمیل را وارد کنید</value>
+  </data>
+  <data name="EnterTelegramID" xml:space="preserve">
+    <value>آیدی تلگرام را وارد کنید</value>
+  </data>
+  <data name="EnterWhatsappNumber" xml:space="preserve">
+    <value>شماره واتزاپ را وارد کنید</value>
+  </data>
+  <data name="EnterInstagramID" xml:space="preserve">
+    <value>آیدی انستاگرام را وارد کنید</value>
+  </data>
+  <data name="EnterAllowReportUser" xml:space="preserve">
+    <value>کاربر پس از چندبار ریپورت مسدود می شود</value>
+  </data>
+  <data name="SkillsInApp" xml:space="preserve">
+    <value>مهارت ها در برنامه</value>
+  </data>
+  <data name="AddSkill" xml:space="preserve">
+    <value>اضافه کردن مهارت</value>
+  </data>
+  <data name="Stories" xml:space="preserve">
+    <value>استوری ها</value>
+  </data>
+  <data name="EditSuccess" xml:space="preserve">
+    <value>ویرایش با موفقیت انجام شد</value>
+  </data>
+  <data name="EditNotSuccess" xml:space="preserve">
+    <value>ویرایش ناموفق</value>
+  </data>
+  <data name="SearchStory" xml:space="preserve">
+    <value>جست و جوی استوری</value>
+  </data>
+  <data name="RegisteredStoriesInApp" xml:space="preserve">
+    <value>استوری های قرار گرفته در برنامه</value>
+  </data>
+  <data name="SubjectsInApp" xml:space="preserve">
+    <value>موضوع ها در برنامه</value>
+  </data>
+  <data name="AddSubject" xml:space="preserve">
+    <value>اضافه کردن موضوع</value>
+  </data>
+  <data name="SentCrit&amp;Sug" xml:space="preserve">
+    <value>انتقادات و پیشنهادات ارسال شده</value>
+  </data>
+  <data name="UsersCrit&amp;Sug" xml:space="preserve">
+    <value>انتقادات و پیشنهادات کاربران</value>
+  </data>
+  <data name="UsersQuestions" xml:space="preserve">
+    <value>سوالات کاربران</value>
+  </data>
+  <data name="AnswerPoint" xml:space="preserve">
+    <value>امتیاز به پاسخ</value>
+  </data>
+  <data name="QuestionTitle" xml:space="preserve">
+    <value>عنوان سوال</value>
+  </data>
+  <data name="NoAnswer" xml:space="preserve">
+    <value>بدون پاسخ</value>
+  </data>
+  <data name="Replied" xml:space="preserve">
+    <value>پاسخ داده شده</value>
+  </data>
+  <data name="DeleteAnswer" xml:space="preserve">
+    <value>حذف پاسخ</value>
+  </data>
+  <data name="WriteAnswerOfQuestion" xml:space="preserve">
+    <value>نوشتن پاسخ سوال</value>
+  </data>
+  <data name="SubmitAsFreqQuestion" xml:space="preserve">
+    <value>ثبت به عنوان سوال متداول</value>
+  </data>
+  <data name="SubmitedSuccess" xml:space="preserve">
+    <value>ثبت با موفقیت انجام شد</value>
+  </data>
+  <data name="SubmitFailed" xml:space="preserve">
+    <value>عملیات ثبت با شکست مواجه شد</value>
+  </data>
+  <data name="EditFaild" xml:space="preserve">
+    <value>ویرایش انجام نشد</value>
+  </data>
+  <data name="DeleteSuccess" xml:space="preserve">
+    <value>حذف با موفقیت انجام شد</value>
+  </data>
+  <data name="DeleteFaild" xml:space="preserve">
+    <value>حذف انجام نشد</value>
+  </data>
+  <data name="AccountIdBanned" xml:space="preserve">
+    <value>حساب کاربری شما قفل است</value>
+  </data>
+  <data name="WrongPassUser" xml:space="preserve">
+    <value>نام کاربری یا کلمه عبور اشتباه است</value>
+  </data>
+  <data name="UserBanned" xml:space="preserve">
+    <value>کاربر مسدود شد</value>
+  </data>
+  <data name="UserActived" xml:space="preserve">
+    <value>کاربر فعال شد</value>
+  </data>
+  <data name="OperationFailed" xml:space="preserve">
+    <value>عملیات ناموفق</value>
+  </data>
+  <data name="UserDeletedFromGroup" xml:space="preserve">
+    <value>کاربر مورد نظر از گروه حذف شد</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>یافت نشد</value>
+  </data>
+  <data name="StartAfterEnd" xml:space="preserve">
+    <value>تاریخ شروع نمی تواند بعد از تاریخ پایان باشد</value>
+  </data>
+  <data name="FillSearchFields" xml:space="preserve">
+    <value>لطفا اطلاعات مورد نیاز برای جست و جو را کامل کنید</value>
+  </data>
+  <data name="SearchFrom" xml:space="preserve">
+    <value>جست و جو از</value>
+  </data>
+  <data name="Till" xml:space="preserve">
+    <value>تا</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>من را به خاطر بسپار</value>
+  </data>
+</root>

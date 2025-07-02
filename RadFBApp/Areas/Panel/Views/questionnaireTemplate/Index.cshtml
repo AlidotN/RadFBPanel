@@ -1,0 +1,235 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.Data.Tbl_questionnaireTemplate>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    RadFBApp.Areas.Panel.Repository.repQuestionnaireTemplate rep = new RadFBApp.Areas.Panel.Repository.repQuestionnaireTemplate();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.QuestionnaireTemplates</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.QuestionnaireTemplates</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <a asp-action="AddQuestionnaireTemplate" asp-controller="questionnaireTemplate" class="btn btn-sm btn-success col-lg-2">
+                                <i class="fa fa-plus"
+                                   aria-hidden="true"></i> @Texts.ToAdd
+                            </a>
+                            <button id="DeleteAll" onclick="DeleteAll();" class="btn btn-sm btn-danger col-lg-2 offset-1" disabled>
+                                <i class="fa fa-trash"
+                                   aria-hidden="true"></i> @Texts.DeleteSelected
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count : @ViewBag.count</span>
+                        </div>
+                    </div>
+
+
+                    <div class="alert-success">@TempData["seccessDelete"]</div>
+                    <div class="alert-danger">@TempData["FailedDelete"]</div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="select"></th>
+                                    <th>@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.TemplateName</th>
+                                    <th> @Texts.Category</th>
+                                    <th>@Texts.Descriptions</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 0;
+                                    @foreach (var item in Model)
+                                    {
+                                        i++;
+                                <tr>
+                                    <td class="text-center"><input value="@item.questionnaireTemplateID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
+                                    <td class="text-center">
+                                                <a asp-action="EditQuestionnaireTemplate" asp-controller="questionnaireTemplate" asp-route-id="@item.questionnaireTemplateID" class="btn btn-sm btn-success white-text" title="@Texts.Edit">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                                <button id="@item.questionnaireTemplateID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                    <td>@i</td>
+                                    <td>@item.questionnaireTemplateTitle</td>
+                                    <td>@rep.catName(item.fk_jobCategoryID)</td>
+                                    <td>@item.questionnaireTemplateDescription</td>
+
+                                </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts{
+    <script>
+            $(function () {
+                $('#info-table').DataTable({
+                    "language": {
+                        "paginate": {
+                                "next": "@Texts.Next",
+                                "previous": "@Texts.Prev"
+                        },
+                            "search": "@Texts.Search : ",
+                                "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                            "emptyTable": "@Texts.NoData"
+                    },
+                    "info": false,
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": false,
+                    "autoWidth": false
+                });
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-purple',
+                    radioClass: 'iradio_flat-purple'
+                });
+            });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        function DeleteAll() {
+            var deleteItems = activity;
+
+                  $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDeleteCount',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAllQuestionnaireTemplate", "questionnaireTemplate", new { deleteItems = "items" })'.replace("items", deleteItems);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+        function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteQuestionnaireTemplate", "questionnaireTemplate", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+    </script>
+}

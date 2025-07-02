@@ -1,0 +1,81 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_UnauthorizedWords
+@{
+    ViewData["Title"] = "EditWord";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.ForbiddenWords</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="wordList" asp-controller="Account">@Texts.ForbiddenWords</a></li>
+                        <li class="breadcrumb-item active">@Texts.ToEdit</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.ForbiddenWordInApp
+                            </h3>
+                        </div><!-- /.card-header -->
+
+                        <div class="alert-danger">@TempData["failed"]</div>
+
+                        <form role="form" method="post" asp-action="EditWord" asp-controller="Account">
+                            <div class="card-body">
+                                <div class="row">
+                                    <input name="id" value="@Model.UnauthorizedWordsID" type="hidden" />
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.FaTitle</label>
+                                            <input name="prWord" type="text" value="@Model.prWord" class="form-control" id="FAaccessName" placeholder="@Texts.DesiredWord" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.EnTitle</label>
+                                            <input name="enWord" type="text" value="@Model.enWord" class="form-control" id="ENaccessName" placeholder="@Texts.DesiredWord" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="wordList" asp-controller="Account" type="submit" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

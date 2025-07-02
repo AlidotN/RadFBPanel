@@ -1,0 +1,295 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.Data.Tbl_major>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    RadFBApp.Areas.Panel.Repository.RepSetting rep = new RadFBApp.Areas.Panel.Repository.RepSetting();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.Majors</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.Majors</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            @Texts.AddMajor
+                        </h3>
+                    </div><!-- /.card-header -->
+
+                    <div class="alert-success">@TempData["successAdd"]</div>
+                    <div class="alert-danger">@TempData["failedAdd"]</div>
+
+                    <form role="form" asp-action="Addmajor" asp-controller="major" method="post">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="tele">@Texts.FaTitle</label>
+                                        <input name="Prmajor" type="text" class="form-control" id="FAaccessName" placeholder="@Texts.DesiredName" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label for="tele">@Texts.EnTitle</label>
+                                        <input name="Enmajor" type="text" class="form-control" id="ENaccessName" placeholder="@Texts.DesiredName" required>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-success">@Texts.Submit</button>
+                        </div>
+                    </form>
+
+
+                </div>
+                <!-- /.card -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <button id="DeleteAll" onclick="DeleteAll();" class="btn btn-sm btn-danger col-lg-2" disabled>
+                                <i class="fa fa-trash"
+                                   aria-hidden="true"></i> @Texts.DeleteSelected
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count : @rep.majorCount()</span>
+                        </div>
+                    </div>
+
+                    <div class="alert-success">@TempData["seccessDelete"]</div>
+                    <div class="alert-danger">@TempData["FailedDelete"]</div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="select"></th>
+                                    <th class="action">@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.FaTitle</th>
+                                    <th>@Texts.EnTitle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 0;
+
+                                    foreach (var item in Model)
+                                    {
+                                        i++;
+                                        <tr>
+
+                                            <td class="text-center">
+                                                <input value="@item.majorID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck">
+                                            </td>
+                                            <td>
+                                                <a asp-action="Editmajor" asp-controller="major" asp-route-id="@item.majorID" class="btn btn-sm btn-primary white-text" title="@Texts.Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button id="@item.majorID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                            <td>@i</td>
+                                            <td>@item.PrMajorTitle</td>
+                                            <td>@item.EnMajorTitle</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+@section Scripts{
+    <script>
+            $(function () {
+                $('#info-table').DataTable({
+                    "language": {
+                        "paginate": {
+                                "next": "@Texts.Next",
+                                "previous": "@Texts.Prev"
+                        },
+                            "search": "@Texts.Search : ",
+                                "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                            "emptyTable": "@Texts.NoData"
+                    },
+                    "info": false,
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": false,
+                    "autoWidth": false
+                });
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-purple',
+                    radioClass: 'iradio_flat-purple'
+                });
+            });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        function DeleteAll() {
+            var deleteItems = activity;
+
+                  $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDeleteCount',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAllmajor", "major", new { deleteItems = "items" })'.replace("items", deleteItems);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+            @*$.ajax({
+            type: 'POST',
+            url: '@Url.Action("DeleteAllSkills", "skills")',
+            data: { "deleteItems": activity },
+            dataType: 'json',
+            success: function (data) {
+                if (data == "true")
+                    alert("success");
+                else
+                    alert("error");
+            }
+        });*@
+        //}
+
+
+
+
+         function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("Deletemajor", "major", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+
+
+    </script>
+}
+
+
+
+

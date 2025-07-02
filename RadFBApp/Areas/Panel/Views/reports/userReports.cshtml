@@ -1,0 +1,335 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "userReports";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.UsersReports</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.UsersReports</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            @Texts.AppUsersReports
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <form role="form" asp-action="userReports" asp-controller="reports" method="post">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tele">@Texts.RegisteredName</label>
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="@Texts.EnterName">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinPostCount</label>
+                                        <input type="number" value="0" class="form-control" id="postCount" name="postCount"
+                                               placeholder="@Texts.Enter @Texts.PostCount">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinBookCount</label>
+                                        <input type="number" value="0" class="form-control" id="bookCount" name="bookCount"
+                                               placeholder="@Texts.Enter @Texts.BookCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinArticleCount</label>
+                                        <input type="number" value="0" class="form-control" id="articleCount" name="articleCount"
+                                               placeholder="@Texts.Enter @Texts.ArticleCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinQuestionnaireCount</label>
+                                        <input type="number" value="0" class="form-control" id="questinierCount" name="questinierCount"
+                                               placeholder="@Texts.Enter @Texts.QuestionnaireCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinReplyCount</label>
+                                        <input type="number" value="0" class="form-control" id="questinierAnswerCount" name="questinierAnswerCount"
+                                               placeholder="@Texts.Enter @Texts.QuestionnaireReplyCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinQuestionCount</label>
+                                        <input type="number" value="0" class="form-control" id="questionCount" name="questionCount"
+                                               placeholder="@Texts.Enter @Texts.QuestionCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinQuestionReplyCount</label>
+                                        <input type="number" class="form-control" id="questionAnswer"
+                                               value="0" name="questionAnswer" placeholder="@Texts.Enter @Texts.QuestionReplyCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinAdvCount</label>
+                                        <input value="0" type="number" class="form-control" name="advCount" id="advCount" placeholder="@Texts.Enter @Texts.AdvCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinAdvReplyCount</label>
+                                        <input type="number" class="form-control" id="advAnswer"
+                                               value="0" name="advAnswer" placeholder="@Texts.Enter @Texts.AdvReplyCount">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinAttendPosterCount</label>
+                                        <input type="number" value="0" class="form-control" id="posterParticipateCount" name="posterParticipateCount"
+                                               placeholder="@Texts.Enter @Texts.AttendPosterCount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="lastLogin">
+                                            <input type="checkbox" class="flat-red" name="lastLogin" value="true">
+                                            @Texts.SortByLastView
+                                        </label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">@Texts.Search</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- ./card -->
+
+                <div class="alert-danger">@TempData["notFound"]</div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Result</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">
+                                @Texts.Count :
+                                @ViewBag.count
+                            </span>
+                            <button id="pdf" class="btn btn-warning">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                @Texts.Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div id="tab" class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.NameOfUser</th>
+                                    <th>@Texts.Mobile</th>
+                                    <th>@Texts.PostCount</th>
+                                    <th>@Texts.AdvCount</th>
+                                    <th>@Texts.AdvReplyCount</th>
+                                    <th>@Texts.QuestionCount</th>
+                                    <th>@Texts.QuestionReplyCount</th>
+                                    <th>@Texts.BookCount</th>
+                                    <th>@Texts.ArticleCount</th>
+                                    <th>@Texts.QuestionnaireCount</th>
+                                    <th>@Texts.QuestionReplyCount</th>
+                                    <th>@Texts.AttendPosterCount </th>
+
+                                </tr>
+                            </thead>
+                            @if (ViewBag.userList != null)
+                            {
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        foreach (var item in ViewBag.userList)
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    @if (item.userType == "حقیقی")
+                                                    {
+                                                        <a asp-action="showRealClient" asp-controller="appUsers" asp-route-id="@item.ID" class="btn btn-sm btn-info white-text" title="@Texts.PreviewFullData">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="showLegalClient" asp-controller="appUsers" asp-route-id="@item.ID" class="btn btn-sm btn-info white-text" title="@Texts.PreviewFullData">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+                                                </td>
+                                                <td>@i</td>
+                                                <td>@item.userName</td>
+                                                <td>@item.tell</td>
+                                                <td>@item.postCount</td>
+                                                <td>@item.advPostCount</td>
+                                                <td>@item.answerToAdvCount</td>
+                                                <td>@item.questionCount</td>
+                                                <td>@item.answerToQuestionCount</td>
+                                                <td>@item.bookCount</td>
+                                                <td>@item.articleCount</td>
+                                                <td>@item.questinierCount</td>
+                                                <td>@item.answerToquestinierCount</td>
+                                                <td>@item.posterParticipateCount</td>
+
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                            "next": "@Texts.Next",
+                            "previous": "@Texts.Prev"
+                    },
+                        "search": "@Texts.Search : ",
+                            "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                        "emptyTable": "@Texts.NoData"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+            var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        $('.date-picker').persianDatepicker({
+            format: 'YYYY/MM/DD',
+            initialValue: false,
+        });
+
+
+
+
+        function createPDF() {
+            var sTable = document.getElementById('tab').innerHTML;
+
+            var style = "<style>";
+            style = style + "table {width: 100%;font: 17px Calibri;direction:rtl;}";
+            style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+            style = style + "padding: 2px 3px;text-align: center;}";
+            style = style + "</style>";
+
+            // CREATE A WINDOW OBJECT.
+            var win = window.open('', '', 'height=700,width=700');
+
+            win.document.write('<html><head>');
+            win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+            win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+            win.document.write('</head>');
+            win.document.write('<body>');
+            win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+            win.document.write('</body></html>');
+
+            win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+            win.print();    // PRINT THE CONTENTS.
+        }
+        $('#pdf').on('click', function () {
+            createPDF();
+        });
+
+
+
+    </script>
+}
+

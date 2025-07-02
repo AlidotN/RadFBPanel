@@ -1,0 +1,211 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_usersQuestions
+@using Microsoft.AspNetCore.Identity
+@using RadFBApp.Models.Data
+@inject UserManager<ApplicationUser> UserManager
+@{
+    ViewData["Title"] = "showDetail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    RadFBApp.Areas.Panel.Repository.RepAdmin rep_admin = new RadFBApp.Areas.Panel.Repository.RepAdmin(UserManager);
+    RadFBApp.Classes.publicFunctions func = new RadFBApp.Classes.publicFunctions();
+    string currenetUser = "";
+    if (User.Identity.IsAuthenticated)
+    {
+        currenetUser = User.Identity.Name;
+    }
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.UsersQuestions</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="usersQuestions">@Texts.UsersQuestions</a></li>
+                        <li class="breadcrumb-item active">@Texts.Details</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                سوال کاربر
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="name">
+                                        <label class="lbl" for="name">@Texts.NameOfUser:</label>
+                                        <label class="lbl-info" for="name">@func.fullName(Model.fk_userID)</label>
+                                    </p>
+                                    <p class="mobile">
+                                        <label class="lbl" for="mobile">@Texts.Mobile:</label>
+                                        <label class="lbl-info" for="mobile">@func.phoneNumber(Model.fk_userID)</label>
+                                    </p>
+                                    <p class="title">
+                                        <label class="lbl" for="title">@Texts.QuestionTitle:</label>
+                                        <label class="lbl-info" for="title">@Model.usersQuestionsTitle</label>
+                                    </p>
+                                    <p class="text">
+                                        <label class="lbl" for="text">@Texts.QuestionText:</label>
+                                        <label class="lbl-info" for="text">@Model.usersQuestionsText</label>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                پاسخ
+                            </h3>
+
+                            <div class="alert-success">@TempData["seccessDelete"]</div>
+                            <div class="alert-danger">@TempData["FailedDelete"]</div>
+                        </div><!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="name">
+                                        <label class="lbl" for="name">@Texts.ReplierUser:</label>
+                                        <label class="lbl-info" for="name">@rep_admin.AdminName(Model.fk_admin)</label>
+                                    </p>
+                                    <p class="mobile">
+                                        <label class="lbl" for="mobile">@Texts.ReplyText:</label>
+                                        <label class="lbl-info" for="mobile">
+                                          @Html.Raw(@Model.QuestionAnswerText)
+                                        </label>
+                                    </p>
+                                    <button id="@Model.usersQuestionsID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                        <i class="fa fa-trash"></i>@Texts.DeleteAnswer
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                پاسخ دادن
+                            </h3>
+                        </div><!-- /.card-header -->
+
+
+                        <div class="alert-success">@TempData["successAdd"]</div>
+                        <div class="alert-danger">@TempData["failedAdd"]</div>
+                        <form role="form" method="post" asp-action="AddAnswer" asp-controller="usersQuestions">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="answer">@Texts.WriteAnswerOfQuestion</label>
+                                            <textarea id="editor1" name="answer"
+                                                      style="width: 100%"></textarea>
+                                        </div>
+                                        <input type="hidden" value="@Model.usersQuestionsID" name="id" />
+                                        <input type="hidden" value="@currenetUser" name="admin" />
+                                        <input type="hidden" value="@Model.usersQuestionsText" name="question" />
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="frequently">@Texts.SubmitAsFreqQuestion</label>
+                                        <input type="checkbox" class="flat-red" value="true" name="add" >
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="usersQuestions" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+
+        $(function () {
+            ClassicEditor
+                .create(document.querySelector('#editor1'))
+                .then(function (editor) {
+                    // The editor instance
+                })
+                .catch(function (error) {
+                    console.error(error)
+                });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        })
+
+
+
+
+ function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                   title: '@Texts.Delete',
+                   content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                           text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAnswer", "usersQuestions", new { id = "myID" })'.replace("myID", id);
+                        }
+                        },
+                        cancel: {
+                               text: '@Texts.No',
+                        btnClass: 'btn-red',
+                        action: function () {
+
+                        }
+
+                        }
+                        }
+           });
+    }
+    </script>
+}

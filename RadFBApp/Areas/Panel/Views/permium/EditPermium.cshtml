@@ -1,0 +1,155 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_permiumPackage
+@{
+    ViewData["Title"] = "EditPermium";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    List<RadFBApp.Models.Data.Tbl_setting> tbl_Settings = new List<RadFBApp.Models.Data.Tbl_setting>();
+    RadFBApp.Areas.Panel.Repository.repPermium rep = new RadFBApp.Areas.Panel.Repository.repPermium();
+    tbl_Settings = rep.settingList();
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.PremiumPackages</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="permium">@Texts.PremiumPackages</a></li>
+                        <li class="breadcrumb-item active">@Texts.ToEdit</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.AvailablePackageInApp
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <form role="form" asp-action="EditPermium" asp-controller="permium" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.CompanyName</label>
+                                            <input asp-for="permiumPackageTitle" type="text" class="form-control" id="accessName"
+                                                   placeholder="@Texts.DesiredName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <label>@Texts.PackageOptions</label>
+                                        <div class="row">
+                                            @foreach (var item in tbl_Settings)
+                                            {
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label>
+                                                            <input type="checkbox" value="@item.settingID" class="flat-red" name="access">
+                                                            @item.prSettingTitle
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                            }
+
+                                            <input type="hidden" asp-for="selectedOptions" id="settingsID" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="monthPrice">@Texts.Price </label>
+                                            <input asp-for="price" type="tel" class="form-control price" id="monthPrice"
+                                                   placeholder="@Texts.EnterPrice">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 offset-2">
+                                        <div class="form-group">
+                                            <label for="yearPrice">@Texts.Duration</label>
+                                            <input asp-for="time" type="number" class="form-control price" id="yearPrice"
+                                                   placeholder="@Texts.EnterDayCount">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="permium" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+  
+
+        $(document).ready(function () {
+
+            //cheched exist valuu
+
+            var traingIds = $("#settingsID").val();
+            var trainindIdArray = traingIds.split(',');
+
+            $.each(trainindIdArray, function (index, value) {
+                $.each($("input[name='access']"), function () {
+
+                    if ($(this).val() == value) {
+
+                        $(this).prop('checked', true);
+                    }
+                });
+            });
+
+                //end
+
+            var listID;
+            var activity = $("#settingsID").val();
+            var s = "";
+            $('body').on('change', "input[name='access']", function () {
+                s = $(this).val();
+                if ($(this).is(':checked')) {
+                    activity = activity + "," + $(this).val();
+                    s = "," + $(this).val();
+                }
+                else
+                    activity = activity.replace("," + s, "");
+                $("#settingsID").val(activity);
+            });
+
+        });
+
+    </script>
+}
+

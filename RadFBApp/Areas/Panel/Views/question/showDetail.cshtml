@@ -1,0 +1,207 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.ViewModels.Admin.VmQuestion
+@{
+    ViewData["Title"] = "showDetail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    RadFBApp.Classes.publicFunctions func = new RadFBApp.Classes.publicFunctions();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.Questions</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="question">@Texts.Questions</a></li>
+                        <li class="breadcrumb-item active">@Texts.PreviewQuestionDetails</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            @Texts.RegisteredQuestionsInApp
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tele">@Texts.UserRegistered</label>
+                                        <input asp-for="name" type="text" class="form-control" id="accessName"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <label>@Texts.QuestionText</label>
+                                        <textarea asp-for="textTitle" type="text" class="form-control" id="accessName"
+                                                  disabled></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <label>@Texts.Subject </label>
+                                        <input asp-for="subject" type="text" class="form-control"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <label> @Texts.Category</label>
+                                        <input asp-for="category" type="text" class="form-control"
+                                               disabled>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.Date</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input asp-for="date" type="text" class="form-control"
+                                                   disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+
+                                    <section>
+                                        <img id="image" class=" upload-image img-rounded"
+                                             src="~/uploads/question/@Model.pic" alt="">
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <a asp-action="Index" asp-controller="question" class="btn btn-primary">@Texts.BackToList</a>
+                            @*<button type="submit" class="btn btn-primary">ویرایش</button>*@
+                        </div>
+                    </form>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Answers</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">
+                                @Texts.Count :
+                                @ViewBag.count
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <div class="alert-success">@TempData["seccessDelete"]</div>
+                    <div class="alert-danger">@TempData["FailedDelete"]</div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="action">@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.ReplierUser</th>
+                                    <th>@Texts.ReplyText</th>
+                                    <th>@Texts.Date</th>
+                                    <th>@Texts.Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (ViewBag.answers != null)
+                                    {
+                                        int i = 0;
+                                        @foreach (var item in ViewBag.answers)
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    <button id="@item.ParentID" onclick="Delete(this.id , @item.fk_QuestiontID);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td>@i</td>
+                                                <td>@func.fullName(item.fk_UserID)</td>
+                                                <td>@item.postDescription </td>
+                                                <td>@item.RegisterDate</td>
+                                                <td>@item.RegisterTime</td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+
+        function Delete(id , qID) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAnswer", "question")?id=' + id + '&questionID=' + qID;
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+
+    </script>
+}

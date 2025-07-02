@@ -1,0 +1,274 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.ViewModels.Admin.VmGroupInfo
+@{
+    ViewData["Title"] = "groupInfo";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    RadFBApp.Areas.Panel.Repository.repGroup rep = new RadFBApp.Areas.Panel.Repository.repGroup();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.Groups</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Group">@Texts.Groups</a></li>
+                        <li class="breadcrumb-item active">@Texts.Details</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.Groups
+                            </h3>
+                            <a asp-action="Index" asp-controller="Group" class="btn btn-primary btn-back">@Texts.BackToList</a>
+                        </div><!-- /.card-header -->
+
+                        <div class="alert-success">@TempData["seccessDelete"]</div>
+                        <div class="alert-danger">@TempData["FailedDelete"]</div>
+
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="name">
+                                        <label class="lbl" for="name">@Texts.GroupTitle:</label>
+                                        <label class="lbl-info" for="name">@Model.GroupTitle</label>
+                                    </p>
+                                    <p class="title">
+                                        <label class="lbl" for="title">@Texts.Descriptions:</label>
+                                        <label class="lbl-info" for="title">@Model.groupDescription</label>
+                                    </p>
+                                    <p class="title">
+                                        <label class="lbl" for="title">@Texts.CreatorUser:</label>
+                                        <label class="lbl-info" for="title">@Model.creatorUser</label>
+                                    </p>
+                                    <p class="mobile">
+                                        <label class="lbl" for="mobile">@Texts.Mobile:</label>
+                                        <label class="lbl-info" for="mobile">@Model.phoneNumber</label>
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@Texts.Member</h3>
+                            <div class="card-tools">
+                                <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">
+                                    @Texts.Count
+                                    : @ViewBag.memberCount
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="info-table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="action2">@Texts.Action</th>
+                                        <th class="table-row">@Texts.Row</th>
+                                        <th>@Texts.NameOfUser</th>
+                                        <th>@Texts.Mobile</th>
+                                        <th>@Texts.MessagesCount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        int userTypeID = 0;
+                                        @foreach (var item in rep.gropMembersInformation(Model.groupID))
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    @{
+                                                        userTypeID = rep.userType(item.memberID);
+
+                                                    }
+                                                    @if (userTypeID == 1)
+                                                    {
+                                                        <a asp-action="showRealClient" asp-controller="appUsers" asp-route-id="@item.memberID" class="btn btn-sm btn-primary white-text" title="@Texts.Preview">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a asp-action="showLegalClient" asp-controller="appUsers" asp-route-id="@item.memberID" class="btn btn-sm btn-primary white-text" title="@Texts.Preview">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                    }
+
+                                                    <button id="" onclick="DeleteMember(@Model.groupID,@item.memberID);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                                <td>@i</td>
+                                                <td>@item.memberName</td>
+                                                <td>@item.memberPhoneNumber</td>
+                                                <td>@item.memberMessagesCount</td>
+                                            </tr>
+
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@Texts.Messages</h3>
+                            <div class="card-tools">
+                                <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">
+                                    @Texts.Count :
+                                    @ViewBag.messageCount
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="info-table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="table-row">@Texts.Row</th>
+                                        <th class="action">@Texts.Action</th>
+                                        <th>@Texts.SenderUser</th>
+                                        <th>@Texts.Date</th>
+                                        <th>@Texts.Time</th>
+                                        <th>@Texts.MessageText</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                            int ii = 0;
+                                            foreach (var item in rep.gropMessageInformation(Model.groupID))
+                                            {
+                                                ii++;
+                                        <tr>
+                                            <td>@ii</td>
+                                            <td class="text-center">
+                                                <button onclick="DeleteMessage(@Model.groupID,@item.messageId);" class="btn btn-sm btn-danger white-text"
+                                                            title="@Texts.Delete">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                            </td>
+                                            <td>@item.senderName</td>
+                                            <td>@item.date</td>
+                                            <td>@item.time</td>
+                                            <td class="message-text">@item.messageText </td>
+                                        </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+
+   
+
+        function DeleteMember(id, userId) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteMember", "Group")?id=' + id + '&userId=' + userId;
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+         function DeleteMessage(id, messageID) {
+      //  var url = $(this).attr("id");
+            // alert(messageID);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteMessage", "Group")?id=' + id + '&messageID=' + messageID;
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+    </script>
+}

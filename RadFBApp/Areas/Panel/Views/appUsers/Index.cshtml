@@ -1,0 +1,217 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.ViewModels.Admin.VmRadfbUsers>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.UsersData</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.UsersData</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count : @ViewBag.userCount</span>
+                        </div>
+                    </div>
+                    <div class="alert-success">@TempData["seccessDelete"]</div>
+                    <div class="alert-danger">@TempData["FailedDelete"]</div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.UserImg</th>
+                                    <th>@Texts.NameOfUser</th>
+                                    <th>@Texts.Mobile</th>
+                                    <th>@Texts.Email</th>
+                                    <th>@Texts.UserType</th>
+                                    <th>@Texts.LastLogin</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    long i = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        i++;
+
+                                        <tr>
+                                            <td class="text-center">
+                                                @if (item.UserTypeID == 1)
+                                                {
+                                                    <a asp-action="showRealClient" asp-controller="appUsers" asp-route-id="@item.RadFbUserID" class="btn btn-sm btn-info white-text" title="@Texts.PreviewFullData">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-action="showLegalClient" asp-controller="appUsers" asp-route-id="@item.RadFbUserID" class="btn btn-sm btn-info white-text" title="@Texts.PreviewFullData">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                }
+
+                                                <a href="edit_user.html" class="btn btn-sm btn-primary white-text" title="@Texts.Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button id="@item.RadFbUserID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                                <button id="@item.RadFbUserID" onclick="Block(this.id);" class="btn btn-sm btn-warning white-text" title="@Texts.Ban">
+                                                    <i class="fa fa-hand-stop-o"></i>
+                                                </button>
+                                                <input type="hidden" id="blockStatus" value="@item.userStatus" />
+                                            </td>
+                                            <td>@i</td>
+                                            <td><img src="~/uploads/@item.UserPic" alt="@Texts.UserImg" width="100" height="100" class="img-rounded table-img"></td>
+                                            <td>@item.fullName</td>
+                                            <td>@item.phoneNumber</td>
+                                            <td>@item.email</td>
+                                            <td>@item.userType</td>
+                                            <td>@item.lastSeenDate</td>
+                                        </tr>
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                            "next": "@Texts.Next",
+                            "previous": "@Texts.Prev"
+                    },
+                        "search": "@Texts.Search : ",
+                            "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                        "emptyTable": "@Texts.NoData"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        function Delete(id) {
+        $.confirm({
+            title: '@Texts.Delete',
+            content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteUser", "appUsers", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                    text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+
+        function Block(id) {
+
+         var st = $('#blockStatus').val();
+ 
+        var cont = '';
+        if (st == "True") {
+            cont = '@Texts.SureToInactive';
+        } else {
+            cont = '@Texts.SureToActive'
+        }
+
+        $.confirm({
+            title: '@Texts.UserStatus',
+            content: cont,
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                    text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("BlockUser", "appUsers", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                    text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+        }
+
+
+
+
+    </script>
+}

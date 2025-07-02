@@ -1,0 +1,264 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.Data.Tbl_permiumPackage>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+    RadFBApp.Areas.Panel.Repository.repPermium rep = new RadFBApp.Areas.Panel.Repository.repPermium();
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.PremiumPackages</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.RegisteredPackages</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <a asp-action="AddPermium" asp-controller="permium" class="btn btn-sm btn-success col-lg-2">
+                                <i class="fa fa-plus" aria-hidden="true"></i> @Texts.ToAdd
+                            </a>
+                            @*<a asp-action="searchDiscount" asp-controller="discount" class="btn btn-lg btn-primary col-lg-3 offset-1">
+                                    <i class="fa fa-search"
+                                       aria-hidden="true"></i> جست و جو
+                                </a>*@
+                            <button id="DeleteAll" onclick="DeleteAll();" class="btn btn-sm btn-danger col-lg-2 offset-1" disabled>
+                                <i class="fa fa-trash"
+                                   aria-hidden="true"></i> @Texts.DeleteSelected
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count :  @ViewBag.count</span>
+                        </div>
+                    </div>
+                    @if (TempData["seccessDelete"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-check"></i> @Texts.Attention!</h6>
+                            @TempData["seccessDelete"]
+                        </div>
+                    }
+                    @if (TempData["FailedDelete"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fa fa-ban"></i> @Texts.Attention!</h6>
+                            @TempData["FailedDelete"]
+                        </div>
+                    }
+
+
+                    <div class="alert-danger"></div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="select"></th>
+                                    <th class="action">@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.PackageName</th>
+                                    <th>@Texts.AvailableOptions</th>
+                                    <th>@Texts.PricePerMonth</th>
+                                    <th>@Texts.Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 0;
+                                    @foreach (var item in Model)
+                                    {
+                                        string myString = rep.settingList(item.permiumPackageID);
+                                        if (myString.Length > 0)
+                                        {
+                                            myString = myString.Substring(0, myString.Length - 2);
+                                        }
+                                        i++;
+                                        <tr>
+                                            <td class="text-center"><input value="@item.permiumPackageID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
+                                            <td class="text-center">
+                                                <a asp-action="EditPermium" asp-controller="permium" asp-route-id="@item.permiumPackageID" class="btn btn-sm btn-primary white-text" title="@Texts.Edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                                <button id="@item.permiumPackageID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </td>
+                                            <td>@i</td>
+                                            <td>@item.permiumPackageTitle</td>
+                                            <td>@myString</td>
+                                            <td>@item.price</td>
+                                            <td>@item.time</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+                    $(function () {
+                $('#info-table').DataTable({
+                    "language": {
+                        "paginate": {
+                                "next": "@Texts.Next",
+                                "previous": "@Texts.Prev"
+                        },
+                            "search": "@Texts.Search : ",
+                                "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                            "emptyTable": "@Texts.NoData"
+                    },
+                    "info": false,
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": false,
+                    "autoWidth": false
+                });
+                $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                    checkboxClass: 'icheckbox_flat-purple',
+                    radioClass: 'iradio_flat-purple'
+                });
+            });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        function DeleteAll() {
+            var deleteItems = activity;
+
+                  $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDeleteCount',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAllPermium", "permium", new { deleteItems = "items" })'.replace("items", deleteItems);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+
+
+        function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+            title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeletePermium", "permium", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+
+    </script>
+}
+
+

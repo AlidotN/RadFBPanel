@@ -1,0 +1,114 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_discount
+@{
+    ViewData["Title"] = "AddDiscount";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.DiscountCodes</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="discount">@Texts.DiscountCodes</a></li>
+                        <li class="breadcrumb-item active">@Texts.ToAdd</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.DiscountCodesInApp
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <form role="form" asp-action="AddDiscount" asp-controller="discount" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.CodeName</label>
+                                            <input asp-for="discountTitle" type="text" class="form-control" id="name"
+                                                   placeholder="@Texts.DesiredName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.DiscountPercent</label>
+                                            <input asp-for="discountPercent" type="number" class="form-control" id="count"
+                                                   placeholder="@Texts.DesiredPercent">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>@Texts.StartDate</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input asp-for="startDate" class="date-picker form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>@Texts.ExpirationDate</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input asp-for="endDate" class="date-picker form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="discount" type="submit" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts
+{
+  <script>
+      $('.date-picker').persianDatepicker({
+          format: 'YYYY/MM/DD',
+      });
+  </script>
+}

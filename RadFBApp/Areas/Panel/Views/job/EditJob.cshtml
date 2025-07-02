@@ -1,0 +1,91 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_jobCategory
+@{
+    ViewData["Title"] = "EditJob";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.JobsCategory</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="job">@Texts.JobsCategory</a></li>
+                        <li class="breadcrumb-item active">@Texts.ToEdit</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.JobsCategoryInApp
+                            </h3>
+                        </div><!-- /.card-header -->
+                        <div>@TempData["failedEdit"]</div>
+
+                        <form role="form" asp-action="EditJob" asp-controller="job" method="post">
+                            <div class="card-body">
+                                <div class="row">
+                                  
+                                        <input asp-for="jobCategoryID" type="hidden" />
+                                   
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.FaTitle</label>
+                                            <input asp-for="PrJobCategoryTitle" type="text" class="form-control"
+                                                   placeholder="@Texts.DesiredName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.EnTitle</label>
+                                            <input asp-for="EnJobCategoryTitle" type="text" class="form-control"
+                                                   placeholder="@Texts.DesiredName">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-4">
+                                        <label>@Texts.Guilds</label>
+                                        <select asp-for="fk_guildID" asp-items="ViewBag.Guids" class="form-control select2">
+                                            <option>@Texts.Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="job" type="submit" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Edit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

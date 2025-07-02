@@ -1,0 +1,215 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.ViewModels.Admin.VmRealClient
+@{
+    ViewData["Title"] = "showRealClient";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.PreviewOneUser</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="appUsers">@Texts.UsersData</a></li>
+                        <li class="breadcrumb-item active">@Texts.PreviewOneUser</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <a asp-action="Index" asp-controller="appUsers" class="btn btn-lg btn-primary col-lg-3 offset-2">
+                                <i class="fa fa-search" aria-hidden="true"></i>@Texts.BackToList
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="image-user-box">
+                            <img src="~/uploads/@Model.UserPic" alt="عکس کاربر" class="image-user">
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="type" class="user-label">@Texts.AccountType: </label>
+                                <label class="user-info">@Texts.Real</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Fullname: </label>
+                                <label class="user-info">@Model.FullName</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Mobile: </label>
+                                <label class="user-info">@Model.phoneNumber</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Email: </label>
+                                <label class="user-info">@Model.email</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.EducationGrade: </label>
+                                <label class="user-info">@Model.EducationLevel</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Province: </label>
+                                <label class="user-info">@Model.province</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.City: </label>
+                                <label class="user-info">@Model.city</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Gender: </label>
+                                <label class="user-info">@Model.Gender</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Marriage: </label>
+                                <label class="user-info">@Model.maritalstatusTitle</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.AttendProject: </label>
+                                <label class="user-info">@Model.companyDesire</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.BirthDate: </label>
+                                <label class="user-info">@Model.birthday</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.InvitationCode: </label>
+                                <label class="user-info">@Model.interdusedEmail</label>
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Activities: </label>
+
+                                @foreach (var item in ViewBag.activity)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Experiences: </label>
+                                @foreach (var item in ViewBag.exprienses)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Skills: </label>
+                                @foreach (var item in ViewBag.skills)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.VoluntaryWorls: </label>
+                                @foreach (var item in ViewBag.voluntary)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Prizes: </label>
+                                @foreach (var item in ViewBag.awards)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+                            </div>
+                            <div class="col-4">
+                                <label for="name" class="user-label">@Texts.Favorites: </label>
+                                @foreach (var item in ViewBag.favorites)
+                                {
+                                    <br />
+                                    <label class="user-info">
+                                        @item
+                                    </label>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-info"><i class="fa fa-paperclip"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">@Texts.Articles</span>
+                        <span class="info-box-number">@ViewBag.articles</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success"><i class="fa fa-book"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">@Texts.Books</span>
+                        <span class="info-box-number">@ViewBag.books</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-4 col-sm-6 col-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-warning"><i class="fa fa-file-text"></i></span>
+
+                    <div class="info-box-content">
+                        <span class="info-box-text">@Texts.Posters</span>
+                        <span class="info-box-number">@ViewBag.posters</span>
+                    </div>
+                    <!-- /.info-box-content -->
+                </div>
+                <!-- /.info-box -->
+            </div>
+            <!-- /.col -->
+
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

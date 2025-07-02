@@ -1,0 +1,283 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.ViewModels.Admin.VmAdv>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.Advs</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item active">@Texts.RegisteredAdvs</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+
+                            <button id="DeleteAll" onclick="DeleteAll();" class="btn btn-sm btn-danger col-lg-2 offset-1" disabled>
+                                <i class="fa fa-trash"
+                                   aria-hidden="true"></i> @Texts.DeleteSelected
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Info</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count : @ViewBag.count</span>
+                        </div>
+                    </div>
+
+                    <div class="alert-success">@TempData["seccessDelete"]</div>
+                    <div class="alert-danger">@TempData["FailedDelete"]</div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="select"></th>
+                                    <th class="action">@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.Registered</th>
+                                    <th>@Texts.Salary</th>
+                                    <th>@Texts.Skill</th>
+                                    <th>@Texts.Experience</th>
+                                    <th>@Texts.Province</th>
+                                    <th>@Texts.Date</th>
+                                    <th>@Texts.Time</th>
+                                    <th class="status">@Texts.Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int i = 0;
+                                    @foreach (var item in Model)
+                                    {
+                                        i++;
+                                <tr>
+                                    <td class="text-center"><input value="@item.ID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
+                                    <td class="text-center">
+
+                                                <a asp-action="showDetail" asp-controller="adv" asp-route-id="@item.ID" class="btn btn-sm btn-primary white-text" title="@Texts.PreviewDetails">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <button id="@item.ID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                    <td>@i</td>
+                                    <td>@item.name</td>
+                                    <td>@item.salary</td>
+                                    <td>@item.skiils</td>
+                                    <td>@item.expriense</td>
+                                    <td>@item.province</td>
+                                    <td>@item.date</td>
+                                    <td>@item.time</td>
+                                    <td class="text-center">
+                                        @if (item.status == false)
+                                        {
+                                                    <button id="@item.ID" onclick="Edit(this.id);" class="fa fa-ban" title="@Texts.Rejected"></button>
+                                        }
+                                        else
+                                        {
+                                                    <button id="@item.ID" onclick="Edit(this.id);" class="fa fa-check" title="@Texts.Published"></button>
+                                        }
+
+
+                                    </td>
+                                </tr>
+
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                            "next": "@Texts.Next",
+                            "previous": "@Texts.Prev"
+                    },
+                        "search": "@Texts.Search : ",
+                            "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                        "emptyTable": "@Texts.NoData"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+        $('.flat-red').on("click", function () {
+            var checkCount = $(".flat-red:checked").length;
+            if (checkCount > 0) {
+                $('#DeleteAll').removeAttr("disabled");
+            }
+            else {
+                $('#DeleteAll').attr("disabled", "disabled");
+            }
+
+        });
+
+        var activity = "";
+        var s = "";
+
+
+        $('body').on('change', "input[name='DeleteCheck']", function () {
+
+           var s = $(this).val();
+            if ($(this).is(':checked')) {
+                activity = activity + "," + $(this).val();
+                s = "," + $(this).val();
+
+            }
+            else {
+
+                activity = activity.replace("," + s, "");
+
+            }
+
+        });
+
+
+        function DeleteAll() {
+            var deleteItems = activity;
+
+                  $.confirm({
+            title: '@Texts.Delete',
+                content: '@Texts.SureToDeleteCount',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAllAdv", "adv", new { deleteItems = "items" })'.replace("items", deleteItems);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+
+
+
+        function Delete(id) {
+      //  var url = $(this).attr("id");
+       // alert(Id);
+        $.confirm({
+                title: '@Texts.Delete',
+                content: '@Texts.SureToDelete',
+            theme: 'supervan',
+            rtl: true,
+            closeIcon: true,
+            animationBounce: 1.5,
+            buttons: {
+
+                confirm: {
+                        text: '@Texts.Yes',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        window.location.href = '@Url.Action("DeleteAdv", "adv", new { id = "myID" })'.replace("myID", id);
+                    }
+                },
+                cancel: {
+                        text: '@Texts.No',
+                    btnClass: 'btn-red',
+                    action: function () {
+
+                    }
+
+                }
+            }
+        });
+    }
+
+        function Edit(id) {
+             $.ajax({
+                type: "POST",
+                url: '@Url.Action("Edit", "adv")',//  this for calling the web method function in controller.
+                data: { "id": id },// user name value
+                // contentType: 'application/json' ,
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+
+        //function OnSuccess
+        function OnSuccess(response) {
+                debugger;
+                switch (response) {
+                    case "true":
+                        msg.show();
+                        msg.css("color", "green");
+                        msg.html("ویرایش با موفقیت انجام شد");
+                        break;
+                    case "false":
+                        msg.show();
+                        msg.css("color", "red");
+                        msg.html("ویرایش ناموفق");
+                        break;
+                }
+        }
+    </script>
+}

@@ -1,0 +1,216 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.ViewModels.Admin.VmQuestion>
+@{
+    ViewData["Title"] = "search";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@Texts.Questions</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="question">@Texts.Questions</a></li>
+                        <li class="breadcrumb-item active">@Texts.SearchQuestion</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header d-flex p-0">
+                        <h3 class="card-title p-3">
+                            <i class="fa fa-gears mr-1"></i>
+                            @Texts.RegisteredQuestionsInApp
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <form role="form" asp-action="search" asp-controller="question" method="post">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="tele">@Texts.UserRegistered</label>
+                                        <input name="name" type="text" class="form-control" id="accessName"
+                                               placeholder="@Texts.EnterName">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.QuestionText</label>
+                                        <input name="txt" type="text" class="form-control" id="accessName"
+                                               placeholder="@Texts.QuestionTextInclude">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <label>@Texts.Subjects</label>
+                                        <select name="subject" asp-items="ViewBag.subject" class="form-control select2">
+                                            <option>@Texts.Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="form-group">
+                                        <label>@Texts.JobsCategory</label>
+                                        <select name="category" asp-items="ViewBag.subject" class="form-control select2">
+                                            <option>@Texts.Choose</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.From</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input name="dt1" class="date-picker form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.To</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fa fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input name="dt2" class="date-picker form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label>@Texts.MinAnswerCount</label>
+                                        <input name="answerCount" type="number" class="form-control" id="answerCount"
+                                               value="0" placeholder="@Texts.DesiredNumber">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">@Texts.Search</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">@Texts.Result</h3>
+                        <div class="card-tools">
+                            <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">
+                                @Texts.Count :
+                                @ViewBag.count
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="info-table" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                  
+                                    <th class="action">@Texts.Action</th>
+                                    <th class="table-row">@Texts.Row</th>
+                                    <th>@Texts.UserRegistered</th>
+                                    <th>@Texts.QuestionText</th>
+                                    <th>@Texts.Date</th>
+                                    <th>@Texts.Time</th>
+                                    <th>@Texts.AnswerCount</th>
+                                </tr>
+                            </thead>
+                            
+                                @if (Model != null)
+                                {
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        @foreach (var item in Model)
+                                        {
+                                            i++;
+                                            <tr>
+                                                <td class="text-center">
+                                                    <a asp-action="showDetail" asp-controller="question" asp-route-id="@item.ID" class="btn btn-sm btn-blue white-text" title="@Texts.Preview">
+                                                        <i class="fa fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <td>@i</td>
+                                                <td>@item.name</td>
+                                                <td>@item.textTitle</td>
+                                                <td>@item.date</td>
+                                                <td>@item.time</td>
+                                                <td>@item.answerCount</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            }
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    @section Scripts{
+        <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                            "next": "@Texts.Next",
+                            "previous": "@Texts.Prev"
+                    },
+                        "search": "@Texts.Search : ",
+                            "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                        "emptyTable": "@Texts.NoData"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+
+            $('.date-picker').persianDatepicker({
+                format: 'YYYY/MM/DD',
+                initialValue: false,
+            });
+        </script>
+
+
+    }

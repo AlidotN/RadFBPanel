@@ -1,0 +1,180 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<RadFBApp.Models.ViewModels.Admin.VmFinance>
+@{
+    ViewData["Title"] = "finance";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+  
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.FinanceWorks</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item active">@Texts.FinanceWorks</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-4  col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@ViewBag.packages</h3>
+                            <p>@Texts.PurchasedPackageCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@ViewBag.Purchases</h3>
+
+                            <p>@Texts.TotalPurchases</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-cash"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-4 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@ViewBag.users </h3>
+                            <p>@Texts.UsersOwnPackagesCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@Texts.Info</h3>
+                            <div class="card-tools">
+                                <span data-toggle="tooltip" title="@Texts.InfoCount" class="badge bg-success">@Texts.Count : @ViewBag.count</span>
+                            </div>
+                        </div>
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="info-table" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th class="table-row">@Texts.Row</th>
+                                        <th>@Texts.NameOfUser</th>
+                                        <th>@Texts.Mobile</th>
+                                        <th>@Texts.PackageName</th>
+                                        <th>@Texts.Price</th>
+                                        <th>@Texts.Date</th>
+                                        <th> @Texts.PaymentStatus</th>
+                                        <th> @Texts.UserPackageStatus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int i = 0;
+                                        @foreach (var item in Model)
+                                        {
+                                            i++;
+                                    <tr>
+                                        <td>@i</td>
+                                        <td>@item.username</td>
+                                        <td>@item.tell</td>
+                                        <td>@item.packageName</td>
+                                        <td>@item.price</td>
+                                        <td>@item.date</td>
+                                        <td>
+                                            @if (item.status == 100)
+                                            {
+                                                        <span class="text-success">@Texts.Payed</span>
+                                            }
+                                            else
+                                            {
+                                                        <span class="text-danger">@Texts.NotPayed</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (item.active == true)
+                                            {
+                                                        <span class="text-success">@Texts.Active </span>
+                                            }
+                                            else
+                                            {
+                                                        <span class="text-danger"> @Texts.Expired  </span>
+                                            }
+                                        </td>
+                                    </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts{
+    <script>
+        $(function () {
+            $('#info-table').DataTable({
+                "language": {
+                    "paginate": {
+                            "next": "@Texts.Next",
+                            "previous": "@Texts.Prev"
+                    },
+                        "search": "@Texts.Search : ",
+                            "lengthMenu": "@Texts.Preview _MENU_ @Texts.ItemInPage",
+                        "emptyTable": "@Texts.NoData"
+                },
+                "info": false,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "autoWidth": false
+            });
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-purple',
+                radioClass: 'iradio_flat-purple'
+            });
+        });
+
+
+
+    </script>
+}
+

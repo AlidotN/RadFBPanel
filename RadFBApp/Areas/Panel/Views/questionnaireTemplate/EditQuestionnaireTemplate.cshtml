@@ -1,0 +1,126 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_questionnaireTemplate
+@{
+    ViewData["Title"] = "EditQuestionnaireTemplate";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.QuestionnaireTemplates</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="questionnaireTemplate">@Texts.QuestionnaireTemplates</a></li>
+                        <li class="breadcrumb-item active">@Texts.ToAdd</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.EditTemplate
+                            </h3>
+                        </div><!-- /.card-header -->
+
+                        <div class="alert-danger">@TempData["error"]</div>
+
+                        <form role="form" method="post" enctype="multipart/form-data" asp-action="EditQuestionnaireTemplate" asp-controller="questionnaireTemplate">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="title">@Texts.TemplateName</label>
+                                            <input asp-for="questionnaireTemplateTitle" type="text" class="form-control" id="title"
+                                                   placeholder="نام مورد نظر">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="title">@Texts.JobsCategory</label>
+                                            <select asp-for="fk_jobCategoryID" asp-items="ViewBag.category" class="form-control select2">
+                                                <option>@Texts.Choose</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="desc">@Texts.TemplateDesc</label>
+                                            <textarea type="text" class="form-control" id="desc"
+                                                      asp-for="questionnaireTemplateDescription" placeholder="@Texts.DesiredDesc"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <input name="InputFile"  id="InputFile" type="file"
+                                               onchange="function();" hidden>
+                                        <label for="InputFile" class="btn btn-info white-text btn-upload">
+                                            <i class="fa fa-file right"></i>@Texts.ChooseFile
+                                        </label>
+                                        <section>
+                                            <div class="md-form">
+                                                <input asp-for="questionnaireTemplateAddress" type="text" id="FileName" class="form-control" disabled>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <a asp-action="Index" asp-controller="questionnaireTemplate" class="btn btn-primary">@Texts.BackToList</a>
+                                <button type="submit" class="btn btn-success">@Texts.Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+    <script>
+        $(function () {
+            InputFile.onchange = evt => {
+                const [file] = InputFile.files
+                if (file) {
+                    //image.src = URL.createObjectURL(file)
+                    var filename = $('#InputFile').val();
+                    $('#FileName').val(filename);
+                }
+            }
+        })
+    </script>
+}
+
+
+
+
+

@@ -1,0 +1,346 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.Dashboard</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item active">@Texts.Home</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>150</h3>
+
+                            <p>@Texts.PostsCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-upload"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>53</h3>
+
+                            <p>@Texts.AdvsCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-bell"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>44</h3>
+
+                            <p>@Texts.UserRegistered</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>65</h3>
+
+                            <p>@Texts.NewView</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>150</h3>
+
+                            <p>@Texts.QuestionnaireCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-ios-list"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>53</h3>
+                            <p>@Texts.QuestionsCount</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fa fa-question"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">@Texts.MoreInfo <i class="fa fa-arrow-circle-left"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@Texts.MostVisitedAdvs</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="adv-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Texts.Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                استخدام در شرکت آذین صنعت - مدارک مورد نیاز کارشناسی ارشد حسابداری - شهر تهران - بیمه و
+                                                پاداش
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>
+                                                استخدام در شرکت آذین صنعت - مدارک مورد نیاز کارشناسی ارشد حسابداری - شهر تهران - بیمه و
+                                                پاداش
+                                            </td>
+                                        </tr>
+                                        </tr>
+                                        <tr>
+                                        <tr>
+                                            <td>
+                                                استخدام در شرکت آذین صنعت - مدارک مورد نیاز کارشناسی ارشد حسابداری - شهر تهران - بیمه و
+                                                پاداش
+                                            </td>
+                                        </tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@Texts.MostVisitedPosts</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="post-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Texts.Type</th>
+                                            <th>@Texts.File</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>@Texts.Article</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>@Texts.Article</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>@Texts.Article</td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@Texts.MostVisitedQuestions</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="question-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Texts.QuestionText</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@Texts.MostVisitedQuestionnaires</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="questionnarie-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Texts.Desc</th>
+                                            <th>@Texts.File</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                توضیح در رابطه با پرسشنامه
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                توضیح در رابطه با پرسشنامه
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                توضیح در رابطه با پرسشنامه
+                                            </td>
+                                            <td class="text-center">
+                                                <button class="btn btn-sm btn-primary white-text" title="@Texts.PreviewFile">
+                                                    <i class="fa fa-eye"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">@Texts.MostVisitedProfile</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="question-table" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>@Texts.NameOfUser</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                کاربر عزیز
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- ./col -->
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+
+</div>
+

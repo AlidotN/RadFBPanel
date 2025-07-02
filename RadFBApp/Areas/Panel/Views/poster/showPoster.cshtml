@@ -1,0 +1,300 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.Data.Tbl_poster
+    @{
+        ViewData["Title"] = "showPoster";
+        Layout = "~/Views/Shared/Layout.cshtml";
+
+        RadFBApp.Classes.publicFunctions rep = new RadFBApp.Classes.publicFunctions();
+        RadFBApp.Areas.Panel.Repository.repPoster rep2 = new RadFBApp.Areas.Panel.Repository.repPoster();
+    }
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                    <h1>@Texts.Posters</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="poster">@Texts.Posters</a></li>
+                        <li class="breadcrumb-item active">@Texts.PreviewPoster </li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                            @Texts.RegisteredPostersInApp
+                            </h3>
+                        </div><!-- /.card-header -->
+
+                        <div class="alert-danger">@TempData["faield"]</div>
+
+                        <form role="form" asp-action="EditPoster" asp-controller="poster" method="post">
+                            <div class="card-body">
+                                <div class="row">
+
+                                    <input asp-for="posterID" type="hidden" />
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="name">@Texts.UserRegistered</label>
+                                        <input type="text" class="form-control" id="name"
+                                                   value="@rep.fullName(Model.fk_userID)" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="title">@Texts.Title</label>
+                                            <input type="text" class="form-control" id="title"
+                                                   value="@Model.posterTitle" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="subject">@Texts.Subject</label>
+                                            <input type="text" class="form-control" id="subject"
+                                                   value="@Model.posterSubject" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="contact">@Texts.Contacts</label>
+                                            <input type="text" class="form-control" id="contact"
+                                                 disabled  value="@Model.posterContacts">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="gender">@Texts.Gender</label>
+                                            <div>
+                                                @if (rep.genderyName(Model.fk_genderID).Contains("زن"))
+                                                {
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="female" checked disabled>
+                                                    @Texts.Female
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="male" disabled>
+                                                    @Texts.Male
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="male" disabled>
+                                                    @Texts.Others
+                                                    </label>
+                                                }
+                                                @if (rep.genderyName(Model.fk_genderID).Contains("مرد"))
+                                                {
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="female" disabled>
+                                                    @Texts.Female
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" checked name="gender" class="flat-red" id="male" disabled>
+                                                    @Texts.Male
+                                                    </label>
+
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="male" disabled>
+                                                    @Texts.Others
+                                                    </label>
+                                                }
+                                                @if (rep.genderyName(Model.fk_genderID).Contains("سایر"))
+                                                {
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="female" disabled>
+                                                    @Texts.Female
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="male" disabled>
+                                                    @Texts.Male
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="gender" class="flat-red" id="male" checked disabled>
+                                                    @Texts.Others
+                                                    </label>
+                                                }
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="type_perform">@Texts.HoldingType</label>
+                                            <div>
+                                                @if (Model.OnlineOflineStatus == true)
+                                                {
+                                                    <label class="radioTxt">
+                                                        <input type="radio" checked name="type_perform" class="flat-red" id="online" disabled>
+                                                    @Texts.Online
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="type_perform" class="flat-red" id="offline" disabled>
+                                                    @Texts.Offline
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <label class="radioTxt">
+                                                        <input type="radio" name="type_perform" class="flat-red" id="online" disabled>
+                                                    @Texts.Online
+                                                    </label>
+                                                    <label class="radioTxt">
+                                                        <input type="radio" checked name="type_perform" class="flat-red" id="offline" disabled>
+                                                    @Texts.Offline
+                                                    </label>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="country">@Texts.Country</label>
+                                            <input type="text" class="form-control" id="country"
+                                                   value="@rep.countryName(Model.fk_countryID)" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="city">@Texts.City</label>
+                                            <input type="text" class="form-control" id="city"
+                                                   value="@Model.posterCity" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="address">@Texts.AddressPlace</label>
+                                            <input type="text" class="form-control" id="address"
+                                                   value="@Model.posterAddress" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="telephone">@Texts.Mobile</label>
+                                            <input type="text" class="form-control" id="telephone"
+                                                   value="@Model.posterPhoneNumber" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="grade">@Texts.Documents</label>
+                                            <input type="text" class="form-control" id="grade"
+                                                   disabled value="@Model.posterDegree">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="prerequisite">@Texts.Requirement</label>
+                                            <input type="text" class="form-control" id="prerequisite"
+                                                   disabled value="@Model.posterPrerequisites">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="etc">@Texts.OtherInfo</label>
+                                            <input type="text" class="form-control" id="etc"
+                                                   disabled value="@Model.posterOtherThings">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="type">@Texts.Type</label>
+                                            <input type="text" class="form-control" id="type"
+                                                   disabled value="@Model.posterType">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="capacity">@Texts.Capacity</label>
+                                            <input type="number" class="form-control" id="capacity"
+                                                   disabled value="@Model.PosterCapacity">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="price">@Texts.Price</label>
+                                            <input type="number" class="form-control" id="price"
+                                                   disabled value="@Model.posterCoust">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label>@Texts.StartDate</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input value="@Model.posterStartDate" class="date-picker form-control" id="startDate" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label>@Texts.EndDate</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                                <input value="@Model.posterEndDate" class="date-picker form-control" id="endDate" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="days">@Texts.DaysWeek</label>
+                                            <input type="text" class="form-control" id="days"
+                                                   disabled value="@Model.daysOfWeek">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="hours">@Texts.HourInDay</label>
+                                            <input type="text" class="form-control" id="hours"
+                                                   disabled value="@Model.timesOfDay">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                        <label for="status">@Texts.PublishStatus</label>
+                                            <div>
+                                                <label class="radioTxt">
+                                                    <input asp-for="posterStatus" type="checkbox" class="flat-red" id="status">
+                                                    @Texts.Accepted
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                            <a asp-action="Index" asp-controller="poster" class="btn btn-primary">@Texts.BackToList</a>
+                            <button type="submit" class="btn btn-success">@Texts.Edit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->

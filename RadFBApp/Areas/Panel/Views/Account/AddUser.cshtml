@@ -1,0 +1,240 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model RadFBApp.Models.ViewModels.Admin.VmAdminPanelUsers;
+
+@{
+    ViewData["Title"] = "AddUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+    
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">@Texts.AdminPanelUsers</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Account">@Texts.Home</a></li>
+                        <li class="breadcrumb-item"><a asp-action="UserList" asp-controller="Account">@Texts.AdminPanelUsers</a></li>
+                        <li class="breadcrumb-item active">@Texts.AddUser</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-12 ">
+                    <!-- Custom tabs (Charts with tabs)-->
+                    <div class="card">
+                        <div class="card-header d-flex p-0">
+                            <h3 class="card-title p-3">
+                                <i class="fa fa-gears mr-1"></i>
+                                @Texts.AdminPanelUsers
+                            </h3>
+
+                            <div class="alert-success">@TempData["AddSuccess"]</div>
+                            <div class="alert-danger">@TempData["AddFailed"]</div>
+
+                        </div><!-- /.card-header -->
+                        <form role="form" method="post" enctype="multipart/form-data" asp-action="AddUser" asp-controller="Account">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="name">@Texts.Email</label>
+                                            <input type="email" class="form-control" id="email" onblur="checkMe()"
+                                                   asp-for="email" placeholder="@Texts.Email" required>
+                                            <div id="lblStatus"></div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.Pass</label>
+                                            <input type="password" class="form-control" id="password"
+                                                   onblur="CheckPassword()" asp-for="password" placeholder="@Texts.Example : myPass@123 " required>
+                                            <div id="pass"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="name">@Texts.Fullname</label>
+                                            <input type="text" class="form-control" id="name"
+                                                   asp-for="FullName" placeholder="@Texts.Fullname" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label for="tele">@Texts.Mobile</label>
+                                            <input type="tel" class="form-control" id="mobile"
+                                                   asp-for="PhoneNumber" placeholder="@Texts.Mobile" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input asp-for="UserPic" id="InputFile" type="file"
+                                               accept="image/x-png,image/jpeg,image/jpg" hidden>
+                                        <label for="InputFile" class="btn btn-info white-text btn-upload">
+                                            <i class="fa fa-image right"></i>@Texts.ChoosePic
+                                        </label>
+                                        <section>
+                                            <div class="md-form">
+                                                <input type="text" id="ImageName" class="form-control" disabled>
+                                                <label for="Image" id="lbl_image"> @Texts.Img </label>
+                                            </div>
+                                        </section>
+                                        <section>
+                                            <img id="image" class=" upload-image img-rounded"
+                                                 src="../../dist//img/no_avatar.jpg" alt="">
+                                        </section>
+                                    </div>
+
+
+                                </div>
+                                <!-- ./row -->
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label>@Texts.Access</label>
+                                            <select asp-for="Fk_userAccessID" id="userAccess" class="form-control" asp-items="ViewBag.AccessNames" required>
+                                                <option>@Texts.Choose</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+
+                            <div class="card-footer">
+                                <a asp-action="UserList" asp-controller="Account" class="btn btn-primary">@Texts.BackToList</a>
+                                <button id="AddButton" type="submit" class="btn btn-success">@Texts.Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /main col -->
+            </div>
+            <!-- /.row (main row) -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts{
+
+    <script>
+    $('document').ready(function () {
+        InputFile.onchange = evt => {
+            const [file] = InputFile.files
+            if (file) {
+                image.src = URL.createObjectURL(file)
+                var filename = $('#InputFile').val();
+                $('#ImageName').val(filename);
+            }
+        }
+
+        $('#AddButton').click(function (e) {
+
+            var conceptName = $('#userAccess').find(":selected").text();
+            if (conceptName == "@Texts.Choose") {
+                e.stopPropagation();
+            }
+            if ($("#lblStatus").html == "@Texts.WrongEmail" || $("#lblStatus").html == "@Texts.SameEmail" ) {
+                e.stopPropagation();
+            }
+
+            if ($("#pass").html == "@Texts.WrongPass") {
+                e.stopPropagation();
+            }
+        });
+
+        //for clearing password note
+        $("#password").keyup(function () {
+            $("#pass").html("");
+        })
+    })
+
+      
+    function checkMe() {
+        var user = $("#email").val();
+        var emailReg = new RegExp(/^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/);
+        var valid = emailReg.test(user);
+        if (valid) {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CheckUsername", "Account")',//  this for calling the web method function in controller.
+                data: { "UserName": user },// user name value
+                // contentType: 'application/json' ,
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        }
+        else {
+            $("#lblStatus").css("color", "red");
+            $("#lblStatus").html("@Texts.WrongEmail");
+        }
+        }
+
+
+   // });
+    //function OnSuccess
+        function OnSuccess(response) {
+            if ($("#email").val() != "") {
+
+
+                var msg = $("#lblStatus");
+                debugger;
+                switch (response) {
+                    case "true":
+                        msg.show();
+                        msg.css("color", "red");
+                        msg.html("@Texts.SameEmail");
+                        break;
+                    case "false":
+                        msg.show();
+                        msg.css("color", "green");
+                        msg.html("@Texts.CorrectEmail");
+                        break;
+
+                }
+            } else {
+                     $("#lblStatus").css("color", "red");
+                     $("#lblStatus").html("@Texts.FillEmail");
+            }
+        }
+
+    function CheckPassword() {
+        var inputtxt = $("#password").val();
+        var paswd = new RegExp(/^(?=.*[0-9])(?=.*[!@@#$%^&*])[a-zA-Z0-9!@@#$%^&*]{7,15}$/);
+        if (paswd.test(inputtxt))
+            {
+            $("#pass").css("color", "green");
+            $("#pass").html("@Texts.Accepted");
+            }
+        else
+            {
+            $("#pass").css("color", "red");
+            $("#pass").html("@Texts.WrongPass");
+            }
+    }
+
+
+    </script>
+}
+

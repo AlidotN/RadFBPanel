@@ -1,0 +1,25 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+<form role="form" asp-action="AddSkill" asp-controller="skills" method="post">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="tele">@Texts.FaTitle</label>
+                    <input name="PrSkillTitle" type="text" class="form-control" id="FAaccessName" placeholder="@Texts.DesiredName" required>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="tele">@Texts.EnTitle</label>
+                    <input name="EnSkillTitle" type="text" class="form-control" id="ENaccessName" placeholder="@Texts.DesiredName" required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.card-body -->
+    <div class="card-footer">
+        <button type="submit" class="btn btn-success">@Texts.Submit</button>
+    </div>
+</form>
