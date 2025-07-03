@@ -11,7 +11,7 @@ namespace RadFBApp.Models.Data
         [Key]
         public long activityID { get; set; }
 
-        public string avtivityTitle { get; set; }
+        public string activityTitle { get; set; }
 
         public bool DeleteStatus { get; set; }
 

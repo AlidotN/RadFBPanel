@@ -523,7 +523,7 @@
     <value>Message Text</value>
   </data>
   <data name="PreviewOneUser" xml:space="preserve">
-    <value />
+    <value>Preview one user</value>
   </data>
   <data name="AccountType" xml:space="preserve">
     <value>Account Type</value>
@@ -535,10 +535,10 @@
     <value>Name of Company</value>
   </data>
   <data name="RegisteredNumber" xml:space="preserve">
-    <value />
+    <value>Registered Number</value>
   </data>
   <data name="NationalID" xml:space="preserve">
-    <value />
+    <value>National ID</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
@@ -559,13 +559,13 @@
     <value>Experiences</value>
   </data>
   <data name="Skills" xml:space="preserve">
-    <value />
+    <value>Skills</value>
   </data>
-  <data name="VoluntaryWorls" xml:space="preserve">
-    <value />
+  <data name="VoluntaryWorks" xml:space="preserve">
+    <value>Voluntary Works</value>
   </data>
   <data name="Prizes" xml:space="preserve">
-    <value />
+    <value>Prizes</value>
   </data>
   <data name="Favorites" xml:space="preserve">
     <value>Favorites</value>
@@ -577,7 +577,7 @@
     <value>Books</value>
   </data>
   <data name="Posters" xml:space="preserve">
-    <value />
+    <value>Posters</value>
   </data>
   <data name="EducationGrade" xml:space="preserve">
     <value>Education Grade</value>
@@ -616,19 +616,19 @@
     <value>Desired Percent</value>
   </data>
   <data name="StartDate" xml:space="preserve">
-    <value />
+    <value>Start Date</value>
   </data>
   <data name="SearchDiscountCodes" xml:space="preserve">
-    <value />
+    <value>Search discount codes</value>
   </data>
   <data name="ToSearch" xml:space="preserve">
-    <value />
+    <value>To Search</value>
   </data>
   <data name="ValidUntilDate" xml:space="preserve">
-    <value />
+    <value>Valid until date</value>
   </data>
   <data name="Result" xml:space="preserve">
-    <value />
+    <value>Result</value>
   </data>
   <data name="EnQuestion" xml:space="preserve">
     <value>Question in English</value>
@@ -643,7 +643,7 @@
     <value>Frequently Questions</value>
   </data>
   <data name="Question" xml:space="preserve">
-    <value />
+    <value>Question</value>
   </data>
   <data name="DesiredQuestion" xml:space="preserve">
     <value>Desired Question</value>
@@ -706,16 +706,16 @@
     <value>Add Major</value>
   </data>
   <data name="Notification" xml:space="preserve">
-    <value />
+    <value>Notification</value>
   </data>
   <data name="Notifications" xml:space="preserve">
-    <value />
+    <value>Notifications</value>
   </data>
   <data name="DesiredTitle" xml:space="preserve">
     <value>Desired Title</value>
   </data>
   <data name="NotificationText" xml:space="preserve">
-    <value />
+    <value>Text of notification</value>
   </data>
   <data name="EnNotificationText" xml:space="preserve">
     <value>Notification Text in English</value>
@@ -724,7 +724,7 @@
     <value>Enter Text</value>
   </data>
   <data name="Text" xml:space="preserve">
-    <value />
+    <value>Text</value>
   </data>
   <data name="EnText" xml:space="preserve">
     <value>Text in English</value>
@@ -733,13 +733,13 @@
     <value>Available packages in application</value>
   </data>
   <data name="PackageName" xml:space="preserve">
-    <value />
+    <value>Package Name</value>
   </data>
   <data name="PackageOptions" xml:space="preserve">
-    <value />
+    <value>Package Options</value>
   </data>
   <data name="Price" xml:space="preserve">
-    <value />
+    <value>Price</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Duration</value>
@@ -751,7 +751,7 @@
     <value>Enter number of days</value>
   </data>
   <data name="RegisteredPackages" xml:space="preserve">
-    <value />
+    <value>Registered Packages</value>
   </data>
   <data name="Attention" xml:space="preserve">
     <value>Attention</value>
@@ -760,22 +760,22 @@
     <value>Available Options</value>
   </data>
   <data name="PricePerMonth" xml:space="preserve">
-    <value />
+    <value>Price per month</value>
   </data>
   <data name="EditPost" xml:space="preserve">
     <value>Edit Post</value>
   </data>
   <data name="RegisteredPostsInApp" xml:space="preserve">
-    <value />
+    <value>Registered posts in application</value>
   </data>
   <data name="SearchPost" xml:space="preserve">
-    <value />
+    <value>Search Post</value>
   </data>
   <data name="From" xml:space="preserve">
     <value>From</value>
   </data>
   <data name="To" xml:space="preserve">
-    <value />
+    <value>To</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Contacts</value>
@@ -784,19 +784,19 @@
     <value>Address</value>
   </data>
   <data name="SearchPoster" xml:space="preserve">
-    <value />
+    <value>Search Poster</value>
   </data>
   <data name="RegisteredPostersInApp" xml:space="preserve">
-    <value />
+    <value>Registered posters in application</value>
   </data>
   <data name="EnterName" xml:space="preserve">
     <value>Enter Name</value>
   </data>
   <data name="Subject" xml:space="preserve">
-    <value />
+    <value>Subject</value>
   </data>
   <data name="SenderUser" xml:space="preserve">
-    <value />
+    <value>Search User</value>
   </data>
   <data name="DesiredSubject" xml:space="preserve">
     <value>Desired Subject</value>
@@ -811,7 +811,7 @@
     <value>Male</value>
   </data>
   <data name="Others" xml:space="preserve">
-    <value />
+    <value>Others</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
@@ -820,10 +820,10 @@
     <value>Type of Holding</value>
   </data>
   <data name="Online" xml:space="preserve">
-    <value />
+    <value>Online</value>
   </data>
   <data name="Offline" xml:space="preserve">
-    <value />
+    <value>Offline</value>
   </data>
   <data name="AddressPlace" xml:space="preserve">
     <value>Address of place</value>
@@ -847,13 +847,13 @@
     <value>Desired Mobile</value>
   </data>
   <data name="Requirement" xml:space="preserve">
-    <value />
+    <value>Requirement</value>
   </data>
   <data name="DesiredRequirement" xml:space="preserve">
     <value>Desired Requirement</value>
   </data>
   <data name="OtherInfo" xml:space="preserve">
-    <value />
+    <value>Other Information</value>
   </data>
   <data name="DesiredOtherInfo" xml:space="preserve">
     <value>Desired Other Information</value>
@@ -862,13 +862,13 @@
     <value>Desired Type</value>
   </data>
   <data name="MinCapacity" xml:space="preserve">
-    <value />
+    <value>Minimum Capacity</value>
   </data>
   <data name="DesiredCapacity" xml:space="preserve">
     <value>Desired Capacity</value>
   </data>
   <data name="MinPrice" xml:space="preserve">
-    <value />
+    <value>Minimum Price</value>
   </data>
   <data name="DesiredPrice" xml:space="preserve">
     <value>Desired Price</value>
@@ -886,10 +886,10 @@
     <value>Desired Hours</value>
   </data>
   <data name="PublishStatus" xml:space="preserve">
-    <value />
+    <value>Publish Status</value>
   </data>
   <data name="PreviewPoster" xml:space="preserve">
-    <value />
+    <value>Preview Poster</value>
   </data>
   <data name="Capacity" xml:space="preserve">
     <value>Capacity</value>
@@ -898,16 +898,16 @@
     <value>Date of End</value>
   </data>
   <data name="PosterTemplates" xml:space="preserve">
-    <value />
+    <value>Templates of Poster</value>
   </data>
   <data name="AddTemplate" xml:space="preserve">
     <value>Add Template</value>
   </data>
   <data name="TemplateName" xml:space="preserve">
-    <value />
+    <value>Template Name</value>
   </data>
   <data name="TemplateDesc" xml:space="preserve">
-    <value />
+    <value>Template Description</value>
   </data>
   <data name="ChooseFile" xml:space="preserve">
     <value>Choose File</value>
@@ -919,82 +919,82 @@
     <value>Number of answers</value>
   </data>
   <data name="SearchQuestion" xml:space="preserve">
-    <value />
+    <value>Search Question</value>
   </data>
   <data name="RegisteredQuestionsInApp" xml:space="preserve">
-    <value />
+    <value>Registered questions in application</value>
   </data>
   <data name="QuestionTextInclude" xml:space="preserve">
-    <value />
+    <value>Text of question include</value>
   </data>
   <data name="Subjects" xml:space="preserve">
-    <value />
+    <value>Subjects</value>
   </data>
   <data name="MinAnswerCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of answer</value>
   </data>
   <data name="DesiredNumber" xml:space="preserve">
     <value>Desired Number</value>
   </data>
   <data name="PreviewQuestionDetails" xml:space="preserve">
-    <value />
+    <value>Preview question details</value>
   </data>
   <data name="Answers" xml:space="preserve">
     <value>Answers</value>
   </data>
   <data name="ReplierUser" xml:space="preserve">
-    <value />
+    <value>Replier User</value>
   </data>
   <data name="ReplyText" xml:space="preserve">
-    <value />
+    <value>Text of reply</value>
   </data>
   <data name="Questionnaires" xml:space="preserve">
-    <value />
+    <value>Questionnaires</value>
   </data>
   <data name="QuestionnaireTitle" xml:space="preserve">
-    <value />
+    <value>Questionnaire Title</value>
   </data>
   <data name="Benefits" xml:space="preserve">
     <value>Benefits</value>
   </data>
   <data name="ReplyingType" xml:space="preserve">
-    <value />
+    <value>Replying Type</value>
   </data>
   <data name="RequestsList" xml:space="preserve">
-    <value />
+    <value>List of Requests</value>
   </data>
   <data name="Direct" xml:space="preserve">
     <value>Direct</value>
   </data>
   <data name="Other" xml:space="preserve">
-    <value />
+    <value>Other</value>
   </data>
   <data name="QuestionnaireTemplates" xml:space="preserve">
-    <value />
+    <value>Templates of questionnaire</value>
   </data>
   <data name="EditTemplate" xml:space="preserve">
     <value>Edit Template</value>
   </data>
   <data name="PurchasedPackageCount" xml:space="preserve">
-    <value />
+    <value>Number of purchased packages</value>
   </data>
   <data name="TotalPurchases" xml:space="preserve">
-    <value />
+    <value>Total Purchases</value>
   </data>
   <data name="UsersOwnPackagesCount" xml:space="preserve">
-    <value />
+    <value>Number of users with the package</value>
   </data>
   <data name="PaymentStatus" xml:space="preserve">
-    <value />
+    <value>Payment Status</value>
   </data>
   <data name="UserPackageStatus" xml:space="preserve">
-    <value />
+    <value>Status of package of user</value>
   </data>
   <data name="Payed" xml:space="preserve">
-    <value />
+    <value>Payed</value>
   </data>
   <data name="NotPayed" xml:space="preserve">
-    <value />
+    <value>Not Payed</value>
   </data>
   <data name="Active" xml:space="preserve">
     <value>Active</value>
@@ -1021,46 +1021,46 @@
     <value>Cost of Invoice</value>
   </data>
   <data name="UsersReports" xml:space="preserve">
-    <value />
+    <value>User Reports</value>
   </data>
   <data name="AppUsersReports" xml:space="preserve">
     <value>Application Users Reports</value>
   </data>
   <data name="MinPostCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of post</value>
   </data>
   <data name="MinBookCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of book</value>
   </data>
   <data name="MinArticleCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of article</value>
   </data>
   <data name="MinQuestionnaireCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of questionnaire</value>
   </data>
   <data name="MinReplyCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of reply to questionnaire</value>
   </data>
   <data name="MinQuestionCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of question</value>
   </data>
   <data name="MinQuestionReplyCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of reply to question</value>
   </data>
   <data name="MinAdvCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of advertisement</value>
   </data>
   <data name="MinAdvReplyCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of reply to advertisement</value>
   </data>
   <data name="MinAttendPosterCount" xml:space="preserve">
-    <value />
+    <value>Minimum number of participate to a poster</value>
   </data>
   <data name="SortByLastView" xml:space="preserve">
-    <value />
+    <value>Sort by last view</value>
   </data>
   <data name="PostCount" xml:space="preserve">
-    <value />
+    <value>Number of Post</value>
   </data>
   <data name="AdvCount" xml:space="preserve">
     <value>Number of Advertisement</value>
@@ -1069,10 +1069,10 @@
     <value>Number of reply to advertisement</value>
   </data>
   <data name="QuestionCount" xml:space="preserve">
-    <value />
+    <value>Number of Question</value>
   </data>
   <data name="QuestionReplyCount" xml:space="preserve">
-    <value />
+    <value>Number of reply to question</value>
   </data>
   <data name="BookCount" xml:space="preserve">
     <value>Number of Book</value>
@@ -1081,10 +1081,10 @@
     <value>Number of Article</value>
   </data>
   <data name="QuestionnaireCount" xml:space="preserve">
-    <value />
+    <value>Number of Questionnaire</value>
   </data>
   <data name="QuestionnaireReplyCount" xml:space="preserve">
-    <value />
+    <value>Number of reply to questionnaire</value>
   </data>
   <data name="AttendPosterCount" xml:space="preserve">
     <value>Number of attendant to poster</value>
@@ -1096,13 +1096,13 @@
     <value>Main settings of the RadFB application</value>
   </data>
   <data name="PhoneNumbers" xml:space="preserve">
-    <value />
+    <value>Phone Numbers</value>
   </data>
   <data name="Telegram" xml:space="preserve">
-    <value />
+    <value>Telegram</value>
   </data>
   <data name="WhatsappNumber" xml:space="preserve">
-    <value />
+    <value>Number of whatsapp</value>
   </data>
   <data name="Instagram" xml:space="preserve">
     <value>Instagram</value>
@@ -1117,7 +1117,7 @@
     <value>About Us in English</value>
   </data>
   <data name="Rules" xml:space="preserve">
-    <value />
+    <value>Rules</value>
   </data>
   <data name="EnRules" xml:space="preserve">
     <value>Rules in English</value>
@@ -1147,13 +1147,13 @@
     <value>The user will be blocked after how many reports.</value>
   </data>
   <data name="SkillsInApp" xml:space="preserve">
-    <value />
+    <value>Skills in application</value>
   </data>
   <data name="AddSkill" xml:space="preserve">
     <value>Add Skill</value>
   </data>
   <data name="Stories" xml:space="preserve">
-    <value />
+    <value>Stories</value>
   </data>
   <data name="EditSuccess" xml:space="preserve">
     <value>Edited successfully</value>
@@ -1162,13 +1162,13 @@
     <value>Edit wasn't successful</value>
   </data>
   <data name="SearchStory" xml:space="preserve">
-    <value />
+    <value>Search Story</value>
   </data>
   <data name="RegisteredStoriesInApp" xml:space="preserve">
-    <value />
+    <value>Registered stories in application</value>
   </data>
   <data name="SubjectsInApp" xml:space="preserve">
-    <value />
+    <value>Subjects in application</value>
   </data>
   <data name="AddSubject" xml:space="preserve">
     <value>Add Subject</value>
@@ -1177,37 +1177,37 @@
     <value>Criticism and suggestions</value>
   </data>
   <data name="UsersCrit&amp;Sug" xml:space="preserve">
-    <value />
+    <value>User feedback and suggestions</value>
   </data>
   <data name="UsersQuestions" xml:space="preserve">
-    <value />
+    <value>User Questions</value>
   </data>
   <data name="AnswerPoint" xml:space="preserve">
     <value>Point to answer</value>
   </data>
   <data name="QuestionTitle" xml:space="preserve">
-    <value />
+    <value>Question Title</value>
   </data>
   <data name="NoAnswer" xml:space="preserve">
-    <value />
+    <value>Without answer</value>
   </data>
   <data name="Replied" xml:space="preserve">
-    <value />
+    <value>Replied</value>
   </data>
   <data name="DeleteAnswer" xml:space="preserve">
     <value>Delete Answer</value>
   </data>
   <data name="WriteAnswerOfQuestion" xml:space="preserve">
-    <value />
+    <value>Write answer of question</value>
   </data>
   <data name="SubmitAsFreqQuestion" xml:space="preserve">
-    <value />
+    <value>Submit as a frequently question</value>
   </data>
   <data name="SubmitedSuccess" xml:space="preserve">
-    <value />
+    <value>Submitted Successfully</value>
   </data>
   <data name="SubmitFailed" xml:space="preserve">
-    <value />
+    <value>Submitted Failed</value>
   </data>
   <data name="EditFaild" xml:space="preserve">
     <value>Edit failed</value>
@@ -1222,36 +1222,78 @@
     <value>Your Account is banned</value>
   </data>
   <data name="WrongPassUser" xml:space="preserve">
-    <value />
+    <value>The username or password is incorrect.</value>
   </data>
   <data name="UserBanned" xml:space="preserve">
-    <value />
+    <value>User Banned</value>
   </data>
   <data name="UserActived" xml:space="preserve">
-    <value />
+    <value>User Activated</value>
   </data>
   <data name="OperationFailed" xml:space="preserve">
-    <value />
+    <value>Operation failed</value>
   </data>
   <data name="UserDeletedFromGroup" xml:space="preserve">
-    <value />
+    <value>The user deleted from group.</value>
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value />
+    <value>Not Found</value>
   </data>
   <data name="StartAfterEnd" xml:space="preserve">
-    <value />
+    <value>The start date cannot be after the end date.</value>
   </data>
   <data name="FillSearchFields" xml:space="preserve">
     <value>Please complete the information required for the search.</value>
   </data>
   <data name="SearchFrom" xml:space="preserve">
-    <value />
+    <value>Search Form</value>
   </data>
   <data name="Till" xml:space="preserve">
-    <value />
+    <value>Till</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value />
+    <value>Remember me</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>Name in English</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>New Post</value>
+  </data>
+  <data name="NewFeedback" xml:space="preserve">
+    <value>New Feedback and Suggestion</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="ViewAllNoti" xml:space="preserve">
+    <value>View all notifications</value>
+  </data>
+  <data name="DeactivatedUsers" xml:space="preserve">
+    <value>Deactivated Users</value>
+  </data>
+  <data name="UserChats" xml:space="preserve">
+    <value>User Chats</value>
+  </data>
+  <data name="UserUplods" xml:space="preserve">
+    <value>User Uplods</value>
+  </data>
+  <data name="EmployAdv" xml:space="preserve">
+    <value>Job Openings</value>
+  </data>
+  <data name="ContactWithUsers" xml:space="preserve">
+    <value>User Communication</value>
+  </data>
+  <data name="UserActivities" xml:space="preserve">
+    <value>Administrative Panel Activities</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>Quit</value>
+  </data>
+  <data name="RadFB" xml:space="preserve">
+    <value>RadFB</value>
   </data>
 </root>

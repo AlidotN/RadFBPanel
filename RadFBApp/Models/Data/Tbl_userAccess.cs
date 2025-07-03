@@ -16,6 +16,7 @@ namespace RadFBApp.Models.Data
         public int userAccessID { get; set; }
 
         public string userAccessTitle { get; set; }
+        public string userAccessTitleEN { get; set; }
 
         public bool setting { get; set; }
 

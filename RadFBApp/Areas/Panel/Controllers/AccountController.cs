@@ -19,6 +19,7 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Globalization;
 using RadFBApp.Areas.Panel.Resources;
+using System.Threading;
 
 
 namespace RadFBApp.Areas.Panel.Controllers
@@ -64,6 +65,7 @@ namespace RadFBApp.Areas.Panel.Controllers
 
                          userAccessID = i.userAccessID,
                          userAccessTitle = i.userAccessTitle,
+                         userAccessTitleEN = i.userAccessTitleEN,
                          setting = i.setting,
                          users = i.users,
                          UnauthorizedWords = i.UnauthorizedWords,
@@ -125,6 +127,7 @@ namespace RadFBApp.Areas.Panel.Controllers
 
                          userAccessID = i.userAccessID,
                          userAccessTitle = i.userAccessTitle,
+                         userAccessTitleEN = i.userAccessTitleEN,
                          setting = i.setting,
                          users = i.users,
                          UnauthorizedWords = i.UnauthorizedWords,
@@ -155,31 +158,30 @@ namespace RadFBApp.Areas.Panel.Controllers
             if (ModelState.IsValid)
             {
                 var q = (from i in database.Tbl_userAccess where i.userAccessID == id select i).FirstOrDefault();
-                q.userAccessTitle = model.userAccessTitle;
-                q.setting = model.setting;
-                q.users = model.users;
-                q.UnauthorizedWords = model.UnauthorizedWords;
-                q.posts = model.posts;
-                q.permiumPackage = model.permiumPackage;
-                q.financialDepartment = model.financialDepartment;
-                q.questions = model.questions;
-                q.adv = model.adv;
-                q.reports = model.adv;
-                q.criticsAndSuggestions = model.criticsAndSuggestions;
-                q.userAccessMenu = model.userAccessMenu;
-                q.usersAdminPanel = model.usersAdminPanel;
-                q.deleteInformation = model.deleteInformation;
+                if (q != null)
+                {
+                    q.userAccessTitle = model.userAccessTitle;
+                    q.userAccessTitleEN = model.userAccessTitleEN;
+                    q.setting = model.setting;
+                    q.users = model.users;
+                    q.UnauthorizedWords = model.UnauthorizedWords;
+                    q.posts = model.posts;
+                    q.permiumPackage = model.permiumPackage;
+                    q.financialDepartment = model.financialDepartment;
+                    q.questions = model.questions;
+                    q.adv = model.adv;
+                    q.reports = model.adv;
+                    q.criticsAndSuggestions = model.criticsAndSuggestions;
+                    q.userAccessMenu = model.userAccessMenu;
+                    q.usersAdminPanel = model.usersAdminPanel;
+                    q.deleteInformation = model.deleteInformation;
 
-
-                database.Tbl_userAccess.Update(q);
-                database.SaveChanges();
-
-
-
-                TempData["EditSuccess"] = Texts.EditSuccess;
-
-
-
+                    database.Tbl_userAccess.Update(q);
+                    database.SaveChanges();
+                    TempData["EditSuccess"] = Texts.EditSuccess;
+                }
+                else
+                    TempData["EditFailed"] = Texts.EditFaild;
             }
             else
             {
@@ -647,6 +649,24 @@ namespace RadFBApp.Areas.Panel.Controllers
             {
                 return RedirectToAction("Login");
             }
+        }
+
+        [AllowAnonymous]
+        public IActionResult ChangeLanguage(string lang)
+        {
+            if (!string.IsNullOrEmpty(lang))
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(lang);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
+            }
+            else
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("fa");
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo("fa");
+                lang = "fa";
+            }
+            Response.Cookies.Append("Language", lang);
+            return Redirect(Request.GetTypedHeaders().Referer.ToString());
         }
 
     }

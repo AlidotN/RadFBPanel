@@ -61,6 +61,7 @@
                                     <th class="action">@Texts.Action</th>
                                     <th class="table-row">@Texts.Row</th>
                                     <th>@Texts.Name</th>
+                                    <th>@Texts.EnglishName</th>
                                     <th>@Texts.Search</th>
                                     <th>@Texts.Users</th>
                                     <th>@Texts.ForbiddenWords</th>
@@ -98,6 +99,9 @@
                                         <td class="text-center">
                                             @item.userAccessTitle
                                             @*@ViewBag.AccessTitle = @item.userAccessTitle*@
+                                        </td>
+                                        <td class="text-center">
+                                            @item.userAccessTitleEN
                                         </td>
                                         <td class="text-center">
                                             @if (item.setting == true)

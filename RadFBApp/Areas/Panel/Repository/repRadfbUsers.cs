@@ -58,7 +58,7 @@ namespace RadFBApp.Areas.Panel.Repository
 
             foreach (var item in q)
             {
-                list.Add(item.avtivityTitle.ToString());
+                list.Add(item.activityTitle.ToString());
             }
             return list;
         }

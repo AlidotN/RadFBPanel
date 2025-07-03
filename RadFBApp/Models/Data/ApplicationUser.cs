@@ -13,6 +13,7 @@ namespace RadFBApp.Models.Data
             this.EmploymentAdvApplies = new HashSet<Tbl_EmploymentAdvApply>();
             this.UnauthorizedWords = new HashSet<Tbl_UnauthorizedWords>();
             this.UsersQuestions = new HashSet<Tbl_usersQuestions>();
+            this.PanelActivities = new HashSet<Tbl_PanelActivities>();
         }
 
 
@@ -31,6 +32,7 @@ namespace RadFBApp.Models.Data
         public virtual ICollection<Tbl_EmploymentAdvApply> EmploymentAdvApplies { get; set; }
         public virtual ICollection<Tbl_UnauthorizedWords> UnauthorizedWords { get; set; }
         public virtual ICollection<Tbl_usersQuestions> UsersQuestions { get; set; }
+        public virtual ICollection<Tbl_PanelActivities> PanelActivities { get; set; }
 
 
 

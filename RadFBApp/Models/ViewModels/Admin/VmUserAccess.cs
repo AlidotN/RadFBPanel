@@ -12,6 +12,7 @@ namespace RadFBApp.Models.ViewModels.Admin
 
         [Required]
         public string userAccessTitle { get; set; }
+        public string userAccessTitleEN { get; set; }
 
         public bool setting { get; set; }
 

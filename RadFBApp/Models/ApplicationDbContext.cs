@@ -110,5 +110,6 @@ namespace RadFBApp.Models
         public virtual DbSet<maritalStatus> Tbl_maritalStatus { get; set; }
         public virtual DbSet<Tbl_UsersPackage> Tbl_UsersPackage { get; set; }
         public virtual DbSet<Tbl_questionnaireTemplate> Tbl_questionnaireTemplate { get; set; }
+        public virtual DbSet<Tbl_PanelActivities> Tbl_PanelActivities { get; set; }
     }
 }

@@ -646,6 +646,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ارتباط با کاربران.
+        /// </summary>
+        public static string ContactWithUsers {
+            get {
+                return ResourceManager.GetString("ContactWithUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ایمیل صحیح است.
         /// </summary>
         public static string CorrectEmail {
@@ -714,6 +723,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         public static string DaysWeek {
             get {
                 return ResourceManager.GetString("DaysWeek", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربران غیرفعال شده.
+        /// </summary>
+        public static string DeactivatedUsers {
+            get {
+                return ResourceManager.GetString("DeactivatedUsers", resourceCulture);
             }
         }
         
@@ -1132,6 +1150,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آگهی های استخدام.
+        /// </summary>
+        public static string EmployAdv {
+            get {
+                return ResourceManager.GetString("EmployAdv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to استخدام شونده.
         /// </summary>
         public static string Employee {
@@ -1182,6 +1209,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         public static string EnDemo {
             get {
                 return ResourceManager.GetString("EnDemo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to نام به انگلیسی.
+        /// </summary>
+        public static string EnglishName {
+            get {
+                return ResourceManager.GetString("EnglishName", resourceCulture);
             }
         }
         
@@ -2014,6 +2050,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to دقیقه.
+        /// </summary>
+        public static string Minute {
+            get {
+                return ResourceManager.GetString("Minute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to شماره موبایل.
         /// </summary>
         public static string Mobile {
@@ -2100,6 +2145,33 @@ namespace RadFBApp.Areas.Panel.Resources {
         public static string NationalID {
             get {
                 return ResourceManager.GetString("NationalID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to انتقادات و پیشنهادات جدید.
+        /// </summary>
+        public static string NewFeedback {
+            get {
+                return ResourceManager.GetString("NewFeedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to پست جدید.
+        /// </summary>
+        public static string NewPost {
+            get {
+                return ResourceManager.GetString("NewPost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کاربر جدید.
+        /// </summary>
+        public static string NewUser {
+            get {
+                return ResourceManager.GetString("NewUser", resourceCulture);
             }
         }
         
@@ -2622,6 +2694,24 @@ namespace RadFBApp.Areas.Panel.Resources {
         public static string QuestionTitle {
             get {
                 return ResourceManager.GetString("QuestionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خروج.
+        /// </summary>
+        public static string Quit {
+            get {
+                return ResourceManager.GetString("Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to راد اف بی.
+        /// </summary>
+        public static string RadFB {
+            get {
+                return ResourceManager.GetString("RadFB", resourceCulture);
             }
         }
         
@@ -3256,11 +3346,29 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to فعالیت کاربران پنل مدیریت.
+        /// </summary>
+        public static string UserActivities {
+            get {
+                return ResourceManager.GetString("UserActivities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کاربر مسدود شد.
         /// </summary>
         public static string UserBanned {
             get {
                 return ResourceManager.GetString("UserBanned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to گفت و گوی کاربران.
+        /// </summary>
+        public static string UserChats {
+            get {
+                return ResourceManager.GetString("UserChats", resourceCulture);
             }
         }
         
@@ -3382,6 +3490,15 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to آپلودهای کاربران.
+        /// </summary>
+        public static string UserUplods {
+            get {
+                return ResourceManager.GetString("UserUplods", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to معتبر تا تاریخ.
         /// </summary>
         public static string ValidUntilDate {
@@ -3391,11 +3508,20 @@ namespace RadFBApp.Areas.Panel.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to مشاهده همه اعلان ها.
+        /// </summary>
+        public static string ViewAllNoti {
+            get {
+                return ResourceManager.GetString("ViewAllNoti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to کارهای داوطلبانه.
         /// </summary>
-        public static string VoluntaryWorls {
+        public static string VoluntaryWorks {
             get {
-                return ResourceManager.GetString("VoluntaryWorls", resourceCulture);
+                return ResourceManager.GetString("VoluntaryWorks", resourceCulture);
             }
         }
         

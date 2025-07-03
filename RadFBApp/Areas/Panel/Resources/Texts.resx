@@ -561,7 +561,7 @@
   <data name="Skills" xml:space="preserve">
     <value>مهارت ها</value>
   </data>
-  <data name="VoluntaryWorls" xml:space="preserve">
+  <data name="VoluntaryWorks" xml:space="preserve">
     <value>کارهای داوطلبانه</value>
   </data>
   <data name="Prizes" xml:space="preserve">
@@ -1253,5 +1253,47 @@
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>من را به خاطر بسپار</value>
+  </data>
+  <data name="EnglishName" xml:space="preserve">
+    <value>نام به انگلیسی</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>کاربر جدید</value>
+  </data>
+  <data name="NewPost" xml:space="preserve">
+    <value>پست جدید</value>
+  </data>
+  <data name="NewFeedback" xml:space="preserve">
+    <value>انتقادات و پیشنهادات جدید</value>
+  </data>
+  <data name="Minute" xml:space="preserve">
+    <value>دقیقه</value>
+  </data>
+  <data name="ViewAllNoti" xml:space="preserve">
+    <value>مشاهده همه اعلان ها</value>
+  </data>
+  <data name="DeactivatedUsers" xml:space="preserve">
+    <value>کاربران غیرفعال شده</value>
+  </data>
+  <data name="UserChats" xml:space="preserve">
+    <value>گفت و گوی کاربران</value>
+  </data>
+  <data name="UserUplods" xml:space="preserve">
+    <value>آپلودهای کاربران</value>
+  </data>
+  <data name="EmployAdv" xml:space="preserve">
+    <value>آگهی های استخدام</value>
+  </data>
+  <data name="ContactWithUsers" xml:space="preserve">
+    <value>ارتباط با کاربران</value>
+  </data>
+  <data name="UserActivities" xml:space="preserve">
+    <value>فعالیت کاربران پنل مدیریت</value>
+  </data>
+  <data name="Quit" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="RadFB" xml:space="preserve">
+    <value>راد اف بی</value>
   </data>
 </root>
