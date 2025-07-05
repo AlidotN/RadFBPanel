@@ -1,10 +1,8 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model IEnumerable<RadFBApp.Models.Data.Tbl_FrequentlyAskedQuestions>
+@model IEnumerable<VmFreQuestions>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
-
-    RadFBApp.Areas.Panel.Repository.RepFrequently rep = new RadFBApp.Areas.Panel.Repository.RepFrequently();
 }
 
 <!-- Content Wrapper. Contains page content -->
@@ -76,27 +74,27 @@
                                     {
                                         i++;
                                 <tr>
-                                    <td class="text-center"><input value="@item.FrequentlyAskedQuestionsID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
+                                    <td class="text-center"><input value="@item.FreQuestionsID" type="checkbox" class="flat-red" name="DeleteCheck" id="DeleteCheck"></td>
                                     <td class="text-center">
-                                                <a asp-action="EditFrequently" asp-controller="frequently" asp-route-id="@item.FrequentlyAskedQuestionsID" class="btn btn-sm btn-primary white-text" title="@Texts.Edit">
+                                                <a asp-action="EditFrequently" asp-controller="frequently" asp-route-id="@item.FreQuestionsID" class="btn btn-sm btn-primary white-text" title="@Texts.Edit">
                                             <i class="fa fa-pencil"></i>
                                         </a>
-                                                <button id="@item.FrequentlyAskedQuestionsID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
+                                                <button id="@item.FreQuestionsID" onclick="Delete(this.id);" class="btn btn-sm btn-danger white-text" title="@Texts.Delete">
                                             <i class="fa fa-trash"></i>
                                         </button>
                                     </td>
                                     <td>@i</td>
-                                    <td>@rep.subjectName(item.fk_SubjectID)</td>
-                                    <td>@item.prQuestion</td>
-                                    <td>@Html.Raw(item.prAnswer)</td>
+                                    <td>@item.SubjectName</td>
+                                    <td>@item.PrQuestion</td>
+                                    <td>@Html.Raw(item.PrAnswer)</td>
                                     <td class="text-center">
-                                        @if (item.status == false)
+                                        @if (item.Status == false)
                                         {
-                                                    <button id="@item.FrequentlyAskedQuestionsID" onclick="Edit(this.id);" class="fa fa-ban" title="@Texts.NotAccepted"></button>
+                                                    <button id="@item.FreQuestionsID" onclick="Edit(this.id);" class="fa fa-ban" title="@Texts.NotAccepted"></button>
                                         }
                                         else
                                         {
-                                                    <button id="@item.FrequentlyAskedQuestionsID" onclick="Edit(this.id);" class="fa fa-check" title="@Texts.Published"></button>
+                                                    <button id="@item.FreQuestionsID" onclick="Edit(this.id);" class="fa fa-check" title="@Texts.Published"></button>
                                         }
                                     </td>
                                 </tr>

@@ -12,9 +12,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RadFBApp.Areas.Panel.Resources;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class questionnaireTemplateController : Controller
     {
 

@@ -13,6 +13,10 @@ namespace RadFBApp.Models
         {
             optionsBuilder.UseSqlServer("Server=185.2.14.219\\MSSQLSERVER2017;database=radfbDB;User ID=radfbcom; Password=6yO62Gbjy4;MultipleActiveResultSets=true");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tbl_FrequentlyAskedQuestions>().HasQueryFilter(u => !u.DeleteStatus);
+        }
 
         public virtual DbSet<postType> postType { get; set; }
         public virtual DbSet<Tbl_activeSesion> Tbl_activeSesion { get; set; }

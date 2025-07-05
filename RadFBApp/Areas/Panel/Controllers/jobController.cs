@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RadFBApp.Models.Data;
 using RadFBApp.Models;
 using RadFBApp.Areas.Panel.Resources;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class jobController : Controller
     {
         readonly ApplicationDbContext database = new ApplicationDbContext();

@@ -8,9 +8,12 @@ using RadFBApp.Models.Data;
 using RadFBApp.Models;
 using RadFBApp.Areas.Panel.Repository;
 using RadFBApp.Areas.Panel.Resources;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class frequentlyController : Controller
     {
         RepFrequently rep = new RepFrequently();
@@ -18,9 +21,9 @@ namespace RadFBApp.Areas.Panel.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.count = rep.FrequentlyList().Count;
-            return View(rep.FrequentlyList());
-
+            var data = rep.FrequentlyList();
+            ViewBag.count = data.Count;
+            return View(data);
         }
 
 

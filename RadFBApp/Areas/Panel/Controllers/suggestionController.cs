@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RadFBApp.Areas.Panel.Repository;
 using RadFBApp.Areas.Panel.Resources;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class suggestionController : Controller
     {
         readonly repSuggestion rep = new repSuggestion();

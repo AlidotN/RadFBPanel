@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RadFBApp.Models.Data;
 using RadFBApp.Models;
+using RadFBApp.Models.ViewModels.Admin;
 
 namespace RadFBApp.Areas.Panel.Repository
 {
@@ -13,9 +14,20 @@ namespace RadFBApp.Areas.Panel.Repository
 
 
         //Frequently list
-        public List<Tbl_FrequentlyAskedQuestions> FrequentlyList()
+        public List<VmFreQuestions> FrequentlyList()
         {
-            var q = (from i in db.Tbl_FrequentlyAskedQuestions where i.DeleteStatus == false select i).ToList();
+            var q = (from i in db.Tbl_FrequentlyAskedQuestions
+                     join s in db.Tbl_FrequentlyAskedQuestionsSubject on i.fk_SubjectID equals s.FrequentlyAskedQuestionsSubjectID
+                     select new VmFreQuestions
+                     {
+                         FreQuestionsID = i.FrequentlyAskedQuestionsID,
+                         EnAnswer = i.EnAnswer,
+                         EnQuestion = i.EnQuestion,
+                         PrAnswer = i.prAnswer,
+                         PrQuestion = i.prQuestion,
+                         Status = i.status,
+                         SubjectName = s.FaTitle,
+                     }).ToList();
             return q;
         }
 
@@ -146,15 +158,6 @@ namespace RadFBApp.Areas.Panel.Repository
                 return 0;
             }
 
-        }
-
-        //subject name
-        public string subjectName(long? id) 
-        {
-            string name = (from i in db.Tbl_FrequentlyAskedQuestionsSubject where i.FrequentlyAskedQuestionsSubjectID == id  select i.FaTitle).SingleOrDefault().ToString();
-
-            return name;
-                
         }
 
 

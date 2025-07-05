@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RadFBApp.Areas.Panel.Repository;
 using RadFBApp.Areas.Panel.Resources;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class questionnaireController : Controller
     {
         readonly repQuestionnaire rep = new repQuestionnaire();

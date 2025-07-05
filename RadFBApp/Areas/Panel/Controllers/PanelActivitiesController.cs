@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RadFBApp.Areas.Panel.Repository;
 using RadFBApp.Areas.Panel.Resources;
@@ -8,6 +9,7 @@ using RadFBApp.Models.Data;
 namespace RadFBApp.Areas.Panel.Controllers
 {
     [Area("Panel")]
+    [Authorize]
     public class PanelActivitiesController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -19,6 +21,7 @@ namespace RadFBApp.Areas.Panel.Controllers
         }
         public IActionResult Index()
         {
+            rep.AddActivity(User.Identity.Name, 4, 2);
             var data = rep.GetAll();
             return View(data);
         }

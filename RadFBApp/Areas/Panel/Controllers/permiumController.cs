@@ -8,9 +8,12 @@ using RadFBApp.Models.Data;
 using RadFBApp.Models;
 using RadFBApp.Areas.Panel.Repository;
 using RadFBApp.Areas.Panel.Resources;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RadFBApp.Areas.Panel.Controllers
 {
+    [Area("Panel")]
+    [Authorize]
     public class permiumController : Controller
     {
        readonly repPermium rep = new repPermium();

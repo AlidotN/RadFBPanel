@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Globalization;
 using RadFBApp.Areas.Panel.Resources;
 using System.Threading;
+using RadFBApp.Areas.Panel.Repository;
 
 
 namespace RadFBApp.Areas.Panel.Controllers
@@ -33,6 +34,7 @@ namespace RadFBApp.Areas.Panel.Controllers
         private readonly ILogger logger;
         private readonly IEmailSender emailSender;
         private readonly IHostingEnvironment _appEnvironment;
+        private readonly RepPanelActivity rep_PanelActivity;
         public AccountController(UserManager<ApplicationUser> _userManager, SignInManager<ApplicationUser> _signInManager, ILoggerFactory _loggerFactory, IEmailSender _emailSender, IHostingEnvironment appEnvironment)
         {
             _appEnvironment = appEnvironment;
@@ -40,6 +42,7 @@ namespace RadFBApp.Areas.Panel.Controllers
             signInManager = _signInManager;
             logger = _loggerFactory.CreateLogger<AccountController>();
             emailSender = _emailSender;
+            rep_PanelActivity = new RepPanelActivity(userManager);
         }
 
         ApplicationDbContext database = new ApplicationDbContext();
@@ -49,6 +52,7 @@ namespace RadFBApp.Areas.Panel.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            rep_PanelActivity.AddActivity(User.Identity.Name, 2, 2);
             return View();
         }
 
@@ -277,7 +281,7 @@ namespace RadFBApp.Areas.Panel.Controllers
                         var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create);
                         model.UserPic.CopyTo(fileStream);
                     }
-
+                    rep_PanelActivity.AddActivity(User.Identity.Name, 3, 3, user.FullName);
                     TempData["AddSuccess"] = Texts.SubmitedSuccess;
                 }
                 else
@@ -422,10 +426,10 @@ namespace RadFBApp.Areas.Panel.Controllers
             if (ModelState.IsValid)
             {
                 var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
-                var user = new ApplicationUser { Email = model.Email };
-                var CheckeConfirmEmail = signInManager.UserManager.Users.Where(c => c.Email == model.Email).FirstOrDefault();
                 if (result.Succeeded)
                 {
+                    
+                    rep_PanelActivity.AddActivity(model.Email, 1, 1);
                     if (returnUrl != null)
                     {
                         return RedirectToLocal(returnUrl);

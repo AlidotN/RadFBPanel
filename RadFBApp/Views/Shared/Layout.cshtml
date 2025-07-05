@@ -1,24 +1,8 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using RadFBApp.Models.Data
-@using RadFBApp.Models
-@using Microsoft.AspNetCore.Identity
-@using RadFBApp.Areas.Panel.Resources
 @using System.Threading
-@inject UserManager<ApplicationUser> UserManager
 
 
 @{
-    string fullName = "";
-    string pic = "";
-    if (User.Identity.IsAuthenticated)
-    {
-        string currenetUser = User.Identity.Name;
-        ApplicationDbContext db = new ApplicationDbContext();
-        List<ApplicationUser> users = UserManager.Users.ToList();
-        var currentID = (from i in users where i.UserName == currenetUser select i).FirstOrDefault();
-        fullName = currentID.FullName;
-        pic = currentID.UserPic;
-    }
     string lang_style = "";
     if (Thread.CurrentThread.CurrentCulture.ToString() == "en")
     {
@@ -158,15 +142,8 @@
             <!-- Sidebar -->
             <div class="sidebar" style="direction: ltr">
                 <div style="direction: rtl">
-                    <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="~/uploads/img/@pic" class="img-circle elevation-2" alt="User Image">
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block">@fullName</a>
-                        </div>
-                    </div>
+
+                    @await Component.InvokeAsync("MainInfo")
 
                     <!-- Sidebar Menu -->
                     <nav class="mt-2">
@@ -525,7 +502,7 @@
     <script src="~/dist/js/persian-date.min.js"></script>
     <script src="~/dist/js/persian-datepicker.min.js"></script>
     <!-- iCheck 1.0.1 -->
-    @*<script src="~/plugins/iCheck/icheck.min.js"></script>*@
+    <script src="~/plugins/iCheck/icheck.min.js"></script>
     <!-- Bootstrap WYSIHTML5 -->
     <script src="~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
     <!-- Slimscroll -->
